@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "databricks-bundle"
+version = "0.1.0"
+description = "Databricks bundle for the Pyfony framework"
+readme = "README.md"
+repository = "https://github.com/DataSentics/databricks-bundle"
+
+license = "MIT"
+
+authors = [
+    "Jiri Koutny <jiri.koutny@datasentics.com>"
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+include = ["*.yaml"]
+
+packages = [
+    { include = "databricksbundle", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = "~3.7.3"
+pyfony-bundles = "0.2.*"
+ipython = "7.*"
+
+[tool.poetry.dev-dependencies]
+databricks-connect = "6.2.*"
+pylint = "2.4.*"
+pytest = "5.2.*"
+py4j = "^0.10.9"

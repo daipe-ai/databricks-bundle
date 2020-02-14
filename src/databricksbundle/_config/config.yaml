@@ -1,0 +1,9 @@
+services:
+  databricksbundle.dbutils.DatabricksConnectDbUtilsFactory:
+
+  databricksbundle.dbutils.DatabricksDbUtilsFactory:
+
+  databricksbundle.dbutils.AutodetectionDbUtilsFactory:
+
+  databricksbundle.dbutils.DbUtilsWrapper:
+    factory: ['@databricksbundle.dbutils.AutodetectionDbUtilsFactory', 'create']
