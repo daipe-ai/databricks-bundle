@@ -1,3 +1,7 @@
+parameters:
+  databricksbundle:
+    enableNotebookErrorHandler: True
+
 services:
   databricksbundle.dbutils.DatabricksConnectDbUtilsFactory:
 
