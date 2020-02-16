@@ -13,10 +13,9 @@ class DatabricksSessionFactory:
     def create(self) -> SparkSessionLazy:
         spark = IPython.get_ipython().user_ns['spark'] # type: SparkSession
 
-        def createLazy():
-            for k, v in self.__extraConfig.items():
-                spark.conf.set(k, v)
+        for k, v in self.__extraConfig.items():
+            spark.conf.set(k, v)
 
-            return spark
+        IPython.get_ipython().user_ns['spark'] = spark
 
-        return SparkSessionLazy(createLazy)
+        return SparkSessionLazy(lambda: spark)
