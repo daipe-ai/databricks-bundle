@@ -6,15 +6,15 @@ class DatabricksSessionFactory:
 
     def __init__(
         self,
-        sparkConfig: dict,
+        extraConfig: dict,
     ):
-        self.__sparkConfig = sparkConfig
+        self.__extraConfig = extraConfig
 
     def create(self) -> SparkSessionLazy:
         spark = IPython.get_ipython().user_ns['spark'] # type: SparkSession
 
         def createLazy():
-            for k, v in self.__sparkConfig.items():
+            for k, v in self.__extraConfig.items():
                 spark.conf.set(k, v)
 
             return spark
