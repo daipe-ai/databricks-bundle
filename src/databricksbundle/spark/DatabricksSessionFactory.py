@@ -6,9 +6,9 @@ class DatabricksSessionFactory:
 
     def __init__(
         self,
-        extraConfig: dict,
+        extraConfig: dict = None,
     ):
-        self.__extraConfig = extraConfig
+        self.__extraConfig = extraConfig or dict()
 
     def create(self) -> SparkSessionLazy:
         spark = IPython.get_ipython().user_ns['spark'] # type: SparkSession

@@ -13,7 +13,7 @@ class DatabricksConnectSessionFactory:
         orgId: str,
         port: int,
         bindAddress: Optional[str],
-        extraConfig: dict,
+        extraConfig: dict = None,
     ):
         self.__address = address
         self.__token = token
@@ -21,7 +21,7 @@ class DatabricksConnectSessionFactory:
         self.__orgId = orgId
         self.__port = port
         self.__bindAddress = bindAddress
-        self.__extraConfig = extraConfig
+        self.__extraConfig = extraConfig or dict()
 
     def create(self) -> SparkSessionLazy:
         def createLazy():
