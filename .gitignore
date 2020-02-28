@@ -1,6 +1,6 @@
 __pycache__/
 *.py[cod]
-.idea/*
+.idea/workspace.xml
 .venv/
 build
 *egg-info
