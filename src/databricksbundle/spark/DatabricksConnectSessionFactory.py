@@ -10,7 +10,7 @@ class DatabricksConnectSessionFactory:
         address: str,
         token: str,
         clusterId: str,
-        orgId: str,
+        orgId: Optional[str],
         port: int,
         bindAddress: Optional[str],
         extraConfig: dict = None,
@@ -29,7 +29,10 @@ class DatabricksConnectSessionFactory:
             conf.set('spark.databricks.service.address', self.__address)
             conf.set('spark.databricks.service.token', self.__token)
             conf.set('spark.databricks.service.clusterId', self.__clusterId)
-            conf.set('spark.databricks.service.orgId', self.__orgId)
+
+            if self.__orgId is not None:
+                conf.set('spark.databricks.service.orgId', self.__orgId)
+
             conf.set('spark.databricks.service.port', self.__port)
 
             if self.__bindAddress is not None:
