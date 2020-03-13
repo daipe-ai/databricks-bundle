@@ -3,6 +3,7 @@ parameters:
 
     databricksConnect:
       connection:
+        orgId:
         port: 8787
         driverBindAddress: 127.0.0.1
       spark:

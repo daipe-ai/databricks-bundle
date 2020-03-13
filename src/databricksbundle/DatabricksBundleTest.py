@@ -10,8 +10,25 @@ from databricksbundle.DatabricksBundle import DatabricksBundle
 
 class DatabricksBundleTest(unittest.TestCase):
 
-    def test_init(self):
+    def test_azure(self):
+        container = self.__createContainer('test_azure')
+
+        testServices(container)
+
+    def test_aws(self):
+        container = self.__createContainer('test_aws')
+
+        testServices(container)
+
+    def test_test(self):
+        container = self.__createContainer('test_test')
+
+        testServices(container)
+
+    def __createContainer(self, appEnv: str):
         class Kernel(BaseKernel):
+
+            _allowedEnvironments = ['test_aws', 'test_azure', 'test_test']
 
             def _registerBundles(self) -> List[Bundle]:
                 return [
@@ -20,14 +37,12 @@ class DatabricksBundleTest(unittest.TestCase):
                 ]
 
         kernel = Kernel(
-            'test',
+            appEnv,
             resolvePath('databricksbundle') + '/_config',
             YamlConfigReader()
         )
 
-        container = kernel.initContainer()
-
-        testServices(container)
+        return kernel.initContainer()
 
 if __name__ == '__main__':
     unittest.main()

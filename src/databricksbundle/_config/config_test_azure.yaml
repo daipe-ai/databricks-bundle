@@ -1,0 +1,11 @@
+imports:
+  - '@databricksbundle/spark/spark_autodetect.yaml'
+
+parameters:
+  databricksbundle:
+    databricksConnect:
+      connection:
+        address: 'https://westeurope.azuredatabricks.net'
+        token: ''
+        clusterId: ''
+        orgId: 123456789
