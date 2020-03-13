@@ -21,7 +21,7 @@ class DatabricksBundleTest(unittest.TestCase):
 
         kernel = Kernel(
             'test',
-            resolvePath('databricksbundle') + '/DatabricksBundleTest',
+            resolvePath('databricksbundle') + '/_config',
             YamlConfigReader()
         )
 
