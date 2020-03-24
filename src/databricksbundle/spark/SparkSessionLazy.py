@@ -1,4 +1,5 @@
 import platform
+from databricksbundle.detector import isDatabricks
 
 class SparkSessionLazy:
 
@@ -8,9 +9,13 @@ class SparkSessionLazy:
 
     def __getattr__(self, attributeName):
         if self._sparkSession is None:
-            if platform.system() == 'Windows':
-                from databricksbundle.spark.hadoopHomeSetter import setHadoopHomeEnvVar # pylint: disable = import-outside-toplevel
-                setHadoopHomeEnvVar()
+            if not isDatabricks():
+                from databricksbundle.spark.javaHomeSetter import setJavaHome # pylint: disable = import-outside-toplevel
+                setJavaHome()
+
+                if platform.system() == 'Windows':
+                    from databricksbundle.spark.hadoopHomeSetter import setHadoopHomeEnvVar # pylint: disable = import-outside-toplevel
+                    setHadoopHomeEnvVar()
 
             self._sparkSession = self._factoryCallback()
 
