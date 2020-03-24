@@ -15,7 +15,6 @@ jobs:
       - name: setup
         run: |
           ./env-init.sh
-          touch $HOME/.databricks-connect
           eval "$(conda shell.bash hook)"
           source $HOME/.poetry/env
           conda activate $PWD/.venv

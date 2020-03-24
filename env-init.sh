@@ -14,4 +14,4 @@ echo "dev-env-init branch: $ENV_INIT_BRANCH"
 curl "https://raw.githubusercontent.com/DataSentics/dev-env-init/$ENV_INIT_BRANCH/env-init-functions.sh?$(date +%s)" -H 'Cache-Control: no-cache' --silent -o env-init-functions.sh
 . "env-init-functions.sh"
 
-prepare_environment_for_package
+prepare_environment_for_package_with_databricks
