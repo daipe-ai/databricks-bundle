@@ -2,10 +2,7 @@ from pathlib import Path
 import os
 
 def setHadoopHomeEnvVar():
-    if 'CONDA_PREFIX' not in os.environ:
-        raise Exception('CONDA_PREFIX environment variable not set')
-
-    venvPath = os.environ['CONDA_PREFIX']
+    venvPath = os.getcwd() + '/.venv'
 
     hadoopHomePath = Path(Path(venvPath).joinpath('hadoop'))
 
