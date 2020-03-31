@@ -11,7 +11,9 @@ class SparkSessionLazy:
         if self._sparkSession is None:
             if not isDatabricks():
                 from databricksbundle.spark.javaHomeSetter import setJavaHome # pylint: disable = import-outside-toplevel
+                from databricksbundle.spark.existingSparkCleanup import cleanExistingSparkConfig  # pylint: disable = import-outside-toplevel
                 setJavaHome()
+                cleanExistingSparkConfig()
 
                 if platform.system() == 'Windows':
                     from databricksbundle.spark.hadoopHomeSetter import setHadoopHomeEnvVar # pylint: disable = import-outside-toplevel
