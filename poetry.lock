@@ -124,7 +124,7 @@ description = "Dependency Injection Container Library"
 name = "injecta"
 optional = false
 python-versions = ">=3.7.3,<3.8.0"
-version = "0.6.2"
+version = "0.7.0"
 
 [package.dependencies]
 PyYAML = ">=5.1.0,<5.2.0"
@@ -337,11 +337,11 @@ description = "Dependency Injection powered framework"
 name = "pyfony"
 optional = false
 python-versions = ">=3.7.3,<3.8.0"
-version = "0.4.2"
+version = "0.4.3"
 
 [package.dependencies]
 console-bundle = ">=0.2.0,<0.3.0"
-injecta = ">=0.6.2,<0.7.0"
+injecta = ">=0.6.0,<0.8.0"
 logger-bundle = ">=0.5.0,<0.6.0"
 
 [[package]]
@@ -350,10 +350,10 @@ description = "Pyfony Framwork bundles base package"
 name = "pyfony-bundles"
 optional = false
 python-versions = ">=3.7.3,<3.8.0"
-version = "0.2.0"
+version = "0.2.1"
 
 [package.dependencies]
-injecta = ">=0.6.0,<0.7.0"
+injecta = ">=0.6.0,<0.8.0"
 python-box = ">=3.4.0,<3.5.0"
 tomlkit = ">=0.5.0,<0.6.0"
 
@@ -502,7 +502,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools"]
 
 [metadata]
-content-hash = "75fc060105c0b7d83d7e538e6592a67f0d6666c94f68c93fcaa089355ad2aeb6"
+content-hash = "db75d20a60075d06be04ca65380c58fc57fb04053004f64e803b31c33917e74d"
 python-versions = "~3.7.3"
 
 [metadata.files]
@@ -550,8 +550,8 @@ importlib-metadata = [
     {file = "importlib_metadata-1.5.0.tar.gz", hash = "sha256:06f5b3a99029c7134207dd882428a66992a9de2bef7c2b699b5641f9886c3302"},
 ]
 injecta = [
-    {file = "injecta-0.6.2-py3-none-any.whl", hash = "sha256:610c54ef06d8b2d9fae3c80e3b8f77f1537e32b051d0a6ac63282721547bc4f0"},
-    {file = "injecta-0.6.2.tar.gz", hash = "sha256:42868234958b9a27ab51f04cdfc3ab82b651e937670004a9641d54ec7ea1292a"},
+    {file = "injecta-0.7.0-py3-none-any.whl", hash = "sha256:a2aca68ee35612f4279a2adb31dd8ea125e5e62623cfcfd51e1ba4d6cbff554a"},
+    {file = "injecta-0.7.0.tar.gz", hash = "sha256:a84be02b2f0bc01b9b47481c132179dabd67356bdc54447faac6059133927210"},
 ]
 ipython = [
     {file = "ipython-7.12.0-py3-none-any.whl", hash = "sha256:f6689108b1734501d3b59c84427259fd5ac5141afe2e846cfa8598eb811886c9"},
@@ -641,12 +641,12 @@ py4j = [
     {file = "py4j-0.10.9.tar.gz", hash = "sha256:36ec57f43ff8ced260a18aa9a4e46c3500a730cac8860e259cbaa546c2b9db2f"},
 ]
 pyfony = [
-    {file = "pyfony-0.4.2-py3-none-any.whl", hash = "sha256:4bb4e30e56e4e2043d7e5d294c6b126161c9a57c33a3fbbeddedb7956dce48e5"},
-    {file = "pyfony-0.4.2.tar.gz", hash = "sha256:10175279002a8b9c4847879952398465b3c5a6aca417a677be15e1c91d62d14d"},
+    {file = "pyfony-0.4.3-py3-none-any.whl", hash = "sha256:ca330c27c7ab9d3545a56b025674078b483a16c09e542aa55690ad032393a958"},
+    {file = "pyfony-0.4.3.tar.gz", hash = "sha256:1e47c3903b1d3db94e8ed3f22f93856474e70142e72d7e9818164d948cc6518b"},
 ]
 pyfony-bundles = [
-    {file = "pyfony-bundles-0.2.0.tar.gz", hash = "sha256:72840289ba6ca50292158a73a90065c300e5b95a2e53ca1a7ad553708f51c70d"},
-    {file = "pyfony_bundles-0.2.0-py3-none-any.whl", hash = "sha256:342d6225becf6d59537174a7db2091259a0dc2c89a3c8fc9301b9258e7050d70"},
+    {file = "pyfony-bundles-0.2.1.tar.gz", hash = "sha256:0599797009dd302b626ec3cf9bd0d4daca9b8114b99e0236659d0ac84c302416"},
+    {file = "pyfony_bundles-0.2.1-py3-none-any.whl", hash = "sha256:f429950eaaf0873e751779b3fddb4fee9700ebf445b45ab135ced9bd83bc3369"},
 ]
 pygments = [
     {file = "Pygments-2.5.2-py2.py3-none-any.whl", hash = "sha256:2a3fe295e54a20164a9df49c75fa58526d3be48e14aceba6d6b1e8ac0bfd6f1b"},

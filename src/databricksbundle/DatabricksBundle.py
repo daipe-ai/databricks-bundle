@@ -8,7 +8,7 @@ from databricksbundle.notebook.helpers import getNotebookPath
 class DatabricksBundle(Bundle):
 
     def boot(self, container: ContainerInterface):
-        parameters = container.getConfig()
+        parameters = container.getParameters()
 
         if (
             isDatabricks()
