@@ -9,6 +9,7 @@ parameters:
       spark:
         extraConfig:
           spark.sql.session.timeZone: 'Etc/UTC'
+          spark.sql.execution.arrow.fallback.enabled: 'true'
 
     databricks:
       spark:
