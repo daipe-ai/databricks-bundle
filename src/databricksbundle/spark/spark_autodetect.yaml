@@ -16,9 +16,23 @@ parameters:
         extraConfig:
 
 services:
-  databricksbundle.spark.DatabricksSessionFactory:
+  databricksbundle.spark.config.databricksExtraConfig:
+    class: databricksbundle.spark.config.DictConfigConfigurator
     arguments:
       - '%databricksbundle.databricks.spark.extraConfig%'
+    tags:
+      - databricks.configurator
+
+  databricksbundle.spark.config.databricksConnectExtraConfig:
+    class: databricksbundle.spark.config.DictConfigConfigurator
+    arguments:
+      - '%databricksbundle.databricksConnect.spark.extraConfig%'
+    tags:
+      - databricksConnect.configurator
+
+  databricksbundle.spark.DatabricksSessionFactory:
+    arguments:
+      - !tagged databricks.configurator
 
   databricksbundle.spark.DatabricksConnectSessionFactory:
     arguments:
@@ -28,7 +42,7 @@ services:
       - '%databricksbundle.databricksConnect.connection.orgId%'
       - '%databricksbundle.databricksConnect.connection.port%'
       - '%databricksbundle.databricksConnect.connection.driverBindAddress%'
-      - '%databricksbundle.databricksConnect.spark.extraConfig%'
+      - !tagged databricksConnect.configurator
 
   databricksbundle.spark.AutodetectionSessionFactory:
 

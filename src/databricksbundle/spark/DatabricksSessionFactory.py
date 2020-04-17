@@ -1,20 +1,22 @@
+from typing import List
 from pyspark.sql import SparkSession # pylint: disable = unused-import
 from databricksbundle.spark.SparkSessionLazy import SparkSessionLazy
 import IPython
+from databricksbundle.spark.config.ConfiguratorInterface import ConfiguratorInterface
 
 class DatabricksSessionFactory:
 
     def __init__(
         self,
-        extraConfig: dict = None,
+        configurators: List[ConfiguratorInterface],
     ):
-        self.__extraConfig = extraConfig or dict()
+        self.__configurators = configurators
 
     def create(self) -> SparkSessionLazy:
         spark = IPython.get_ipython().user_ns['spark'] # type: SparkSession
 
-        for k, v in self.__extraConfig.items():
-            spark.conf.set(k, v)
+        for configurator in self.__configurators:
+            configurator.configure(spark)
 
         IPython.get_ipython().user_ns['spark'] = spark
 

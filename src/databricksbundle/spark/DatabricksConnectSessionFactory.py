@@ -1,7 +1,8 @@
-from typing import Optional
+from typing import Optional, List
 from pyspark.sql.session import SparkSession
 from pyspark.conf import SparkConf
 from databricksbundle.spark.SparkSessionLazy import SparkSessionLazy
+from databricksbundle.spark.config.ConfiguratorInterface import ConfiguratorInterface
 
 class DatabricksConnectSessionFactory:
 
@@ -13,7 +14,7 @@ class DatabricksConnectSessionFactory:
         orgId: Optional[str],
         port: int,
         bindAddress: Optional[str],
-        extraConfig: dict = None,
+        configurators: List[ConfiguratorInterface],
     ):
         self.__address = address
         self.__token = token
@@ -21,10 +22,11 @@ class DatabricksConnectSessionFactory:
         self.__orgId = orgId
         self.__port = port
         self.__bindAddress = bindAddress
-        self.__extraConfig = extraConfig or dict()
+        self.__configurators = configurators
 
     def create(self) -> SparkSessionLazy:
         def createLazy():
+            # Databricks Connect configuration must be set before calling getOrCreate()
             conf = SparkConf()
             conf.set('spark.databricks.service.address', self.__address)
             conf.set('spark.databricks.service.token', self.__token)
@@ -38,9 +40,11 @@ class DatabricksConnectSessionFactory:
             if self.__bindAddress is not None:
                 conf.set('spark.driver.bindAddress', self.__bindAddress)
 
-            for k, v in self.__extraConfig.items():
-                conf.set(k, v)
+            spark = SparkSession.builder.config(conf=conf).getOrCreate()
 
-            return SparkSession.builder.config(conf=conf).getOrCreate()
+            for configurator in self.__configurators:
+                configurator.configure(spark)
+
+            return spark
 
         return SparkSessionLazy(createLazy)
