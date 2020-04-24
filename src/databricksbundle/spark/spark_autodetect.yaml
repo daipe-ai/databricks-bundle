@@ -4,7 +4,7 @@ parameters:
     databricksConnect:
       connection:
         orgId:
-        port: 8787
+        port: 8787 # @deprecated, will be changed to 15001 in the next major version
         driverBindAddress: 127.0.0.1
       spark:
         extraConfig:
