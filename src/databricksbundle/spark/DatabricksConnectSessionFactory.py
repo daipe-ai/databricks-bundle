@@ -25,6 +25,18 @@ class DatabricksConnectSessionFactory:
         self.__configurators = configurators
 
     def create(self) -> SparkSessionLazy:
+        if not self.__address:
+            raise Exception('Databricks workspace address not set')
+
+        if not self.__token:
+            raise Exception('Databricks workspace token not set')
+
+        if not self.__clusterId:
+            raise Exception('Databricks cluster not set')
+
+        if not self.__port:
+            raise Exception('Databricks connect port not set')
+
         def createLazy():
             # Databricks Connect configuration must be set before calling getOrCreate()
             conf = SparkConf()

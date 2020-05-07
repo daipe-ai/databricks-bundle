@@ -6,5 +6,5 @@ parameters:
     databricksConnect:
       connection:
         address: 'https://dbc-123.cloud.databricks.com'
-        token: ''
-        clusterId: ''
+        token: 'abcd123456'
+        clusterId: '0416-084917-doles835'

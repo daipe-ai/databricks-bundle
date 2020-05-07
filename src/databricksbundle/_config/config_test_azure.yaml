@@ -6,6 +6,6 @@ parameters:
     databricksConnect:
       connection:
         address: 'https://westeurope.azuredatabricks.net'
-        token: ''
-        clusterId: ''
+        token: 'abcd123456'
+        clusterId: '0416-084917-doles835'
         orgId: 123456789
