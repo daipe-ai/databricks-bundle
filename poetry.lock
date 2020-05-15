@@ -379,14 +379,14 @@ logger-bundle = ">=0.5.0,<0.6.0"
 
 [[package]]
 category = "main"
-description = "Pyfony Framwork bundles base package"
+description = "Pyfony Framework bundles base package"
 name = "pyfony-bundles"
 optional = false
 python-versions = ">=3.7.3,<3.8.0"
-version = "0.2.1"
+version = "0.2.2"
 
 [package.dependencies]
-injecta = ">=0.6.0,<0.8.0"
+injecta = ">=0.6.0,<0.9.0"
 python-box = ">=3.4.0,<3.5.0"
 tomlkit = ">=0.5.0,<0.6.0"
 
@@ -770,8 +770,8 @@ pyfony = [
     {file = "pyfony-0.4.3.tar.gz", hash = "sha256:1e47c3903b1d3db94e8ed3f22f93856474e70142e72d7e9818164d948cc6518b"},
 ]
 pyfony-bundles = [
-    {file = "pyfony-bundles-0.2.1.tar.gz", hash = "sha256:0599797009dd302b626ec3cf9bd0d4daca9b8114b99e0236659d0ac84c302416"},
-    {file = "pyfony_bundles-0.2.1-py3-none-any.whl", hash = "sha256:f429950eaaf0873e751779b3fddb4fee9700ebf445b45ab135ced9bd83bc3369"},
+    {file = "pyfony-bundles-0.2.2.tar.gz", hash = "sha256:3d0c6be33002df1fad7015319ead1e718a41d8bfe8d2387167daf284f7fe40bf"},
+    {file = "pyfony_bundles-0.2.2-py3-none-any.whl", hash = "sha256:d5c88bddd14a2773c767ea681e27f661a0712d70555c54731cb16eff64cfdde9"},
 ]
 pygments = [
     {file = "Pygments-2.5.2-py2.py3-none-any.whl", hash = "sha256:2a3fe295e54a20164a9df49c75fa58526d3be48e14aceba6d6b1e8ac0bfd6f1b"},
