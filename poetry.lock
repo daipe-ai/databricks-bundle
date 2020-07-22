@@ -76,15 +76,16 @@ colorama = "*"
 
 [[package]]
 category = "dev"
-description = "Console"
+description = "Console Bundle for the Pyfony Framework"
 name = "console-bundle"
 optional = false
 python-versions = ">=3.7.3,<3.8.0"
-version = "0.2.0"
+version = "0.2.5"
 
 [package.dependencies]
 colorlog = ">=4.0.0,<4.1.0"
 pyfony-bundles = ">=0.2.0,<0.3.0"
+python-dotenv = ">=0.13.0,<0.14.0"
 
 [[package]]
 category = "dev"
@@ -124,7 +125,7 @@ description = "Dependency Injection Container Library"
 name = "injecta"
 optional = false
 python-versions = ">=3.7.3,<3.8.0"
-version = "0.7.0"
+version = "0.8.4"
 
 [package.dependencies]
 PyYAML = ">=5.1.0,<5.2.0"
@@ -214,7 +215,7 @@ description = "Logger bundle for the Pyfony framework"
 name = "logger-bundle"
 optional = false
 python-versions = ">=3.7.3,<3.8.0"
-version = "0.5.2"
+version = "0.5.3"
 
 [package.dependencies]
 colorlog = ">=4.0.0,<4.1.0"
@@ -370,12 +371,12 @@ description = "Dependency Injection powered framework"
 name = "pyfony"
 optional = false
 python-versions = ">=3.7.3,<3.8.0"
-version = "0.4.3"
+version = "0.5.0"
 
 [package.dependencies]
-console-bundle = ">=0.2.0,<0.3.0"
-injecta = ">=0.6.0,<0.8.0"
-logger-bundle = ">=0.5.0,<0.6.0"
+console-bundle = ">=0.2.5,<0.3.0"
+injecta = ">=0.8.1,<0.9.0"
+logger-bundle = ">=0.5.3,<0.6.0"
 
 [[package]]
 category = "main"
@@ -468,6 +469,17 @@ version = "2.8.1"
 six = ">=1.5"
 
 [[package]]
+category = "dev"
+description = "Add .env support to your django/flask apps in development and deployments"
+name = "python-dotenv"
+optional = false
+python-versions = "*"
+version = "0.13.0"
+
+[package.extras]
+cli = ["click (>=5.0)"]
+
+[[package]]
 category = "main"
 description = "World timezone definitions, modern and historical"
 name = "pytz"
@@ -554,7 +566,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools"]
 
 [metadata]
-content-hash = "4ea84c9ebabebbbd2c2ba862e1967de7530df6f18e617b0381f8616feed17162"
+content-hash = "8d6d1c848842936da107cc78046ae38d3cec17a36788ab582f9706cf85ee263d"
 python-versions = "~3.7.3"
 
 [metadata.files]
@@ -587,8 +599,8 @@ colorlog = [
     {file = "colorlog-4.0.2.tar.gz", hash = "sha256:3cf31b25cbc8f86ec01fef582ef3b840950dea414084ed19ab922c8b493f9b42"},
 ]
 console-bundle = [
-    {file = "console-bundle-0.2.0.tar.gz", hash = "sha256:1d7375cd3bd3d694157517ec64cd473665fa94d0b934c240f69ce320bdd5b516"},
-    {file = "console_bundle-0.2.0-py3-none-any.whl", hash = "sha256:c239601f1e020e869ae0a8db6410ecba144fca0dcd7394c86e394c9c676f3889"},
+    {file = "console-bundle-0.2.5.tar.gz", hash = "sha256:0280bc61cbcc4338e29a65b22dee9b37546627839745cd51c062c31d99f46944"},
+    {file = "console_bundle-0.2.5-py3-none-any.whl", hash = "sha256:f2029bbe346001a759b9774ce30455f6d3a80c36c500c8392400194fe12858f7"},
 ]
 databricks-connect = [
     {file = "databricks-connect-6.2.0.tar.gz", hash = "sha256:b09a69e2bc2419361d044b93cb873715e3a006f8ef6ebd14f567ea3195eecee6"},
@@ -602,8 +614,7 @@ importlib-metadata = [
     {file = "importlib_metadata-1.5.0.tar.gz", hash = "sha256:06f5b3a99029c7134207dd882428a66992a9de2bef7c2b699b5641f9886c3302"},
 ]
 injecta = [
-    {file = "injecta-0.7.0-py3-none-any.whl", hash = "sha256:a2aca68ee35612f4279a2adb31dd8ea125e5e62623cfcfd51e1ba4d6cbff554a"},
-    {file = "injecta-0.7.0.tar.gz", hash = "sha256:a84be02b2f0bc01b9b47481c132179dabd67356bdc54447faac6059133927210"},
+    {file = "injecta-0.8.4-py3-none-any.whl", hash = "sha256:ae0326dddc38ce3eb009ec15094d7b3382f95ea6e13f41c544b7873c779eb6fd"},
 ]
 ipython = [
     {file = "ipython-7.12.0-py3-none-any.whl", hash = "sha256:f6689108b1734501d3b59c84427259fd5ac5141afe2e846cfa8598eb811886c9"},
@@ -645,8 +656,8 @@ lazy-object-proxy = [
     {file = "lazy_object_proxy-1.4.3-cp38-cp38-win_amd64.whl", hash = "sha256:59f79fef100b09564bc2df42ea2d8d21a64fdcda64979c0fa3db7bdaabaf6239"},
 ]
 logger-bundle = [
-    {file = "logger-bundle-0.5.2.tar.gz", hash = "sha256:c94cf42e314c32e3d6e147c46f09fccc180dacd16a02593811c17d12d88d4494"},
-    {file = "logger_bundle-0.5.2-py3-none-any.whl", hash = "sha256:6b74256412ee5caa87337b57aa0c763bb238cd164c0d250ffd43e9df19128c9a"},
+    {file = "logger-bundle-0.5.3.tar.gz", hash = "sha256:7f68aaf7eeec7ea7c4c2ae61d89990b4e218a533364b3132cc44012ede145f1c"},
+    {file = "logger_bundle-0.5.3-py3-none-any.whl", hash = "sha256:1021f1d6bd2afd2775782ba807e4f443054f2433afa9ccb648cd6e7d0a37b244"},
 ]
 mccabe = [
     {file = "mccabe-0.6.1-py2.py3-none-any.whl", hash = "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42"},
@@ -766,8 +777,8 @@ pyarrow = [
     {file = "pyarrow-0.16.0.tar.gz", hash = "sha256:bb6bb7ba1b6a1c3c94cc0d0068c96df9498c973ad0ae6ca398164d339b704c97"},
 ]
 pyfony = [
-    {file = "pyfony-0.4.3-py3-none-any.whl", hash = "sha256:ca330c27c7ab9d3545a56b025674078b483a16c09e542aa55690ad032393a958"},
-    {file = "pyfony-0.4.3.tar.gz", hash = "sha256:1e47c3903b1d3db94e8ed3f22f93856474e70142e72d7e9818164d948cc6518b"},
+    {file = "pyfony-0.5.0-py3-none-any.whl", hash = "sha256:900fe83db4db554900fdfacf79532cdee1e75d2898814d84b4ad534ac2331734"},
+    {file = "pyfony-0.5.0.tar.gz", hash = "sha256:53e6d4f5e03d9815a9c89acf77abb16e356181d03be5b8352710847165260f57"},
 ]
 pyfony-bundles = [
     {file = "pyfony-bundles-0.2.2.tar.gz", hash = "sha256:3d0c6be33002df1fad7015319ead1e718a41d8bfe8d2387167daf284f7fe40bf"},
@@ -796,6 +807,10 @@ python-box = [
 python-dateutil = [
     {file = "python-dateutil-2.8.1.tar.gz", hash = "sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c"},
     {file = "python_dateutil-2.8.1-py2.py3-none-any.whl", hash = "sha256:75bb3f31ea686f1197762692a9ee6a7550b59fc6ca3a1f4b5d7e32fb98e2da2a"},
+]
+python-dotenv = [
+    {file = "python-dotenv-0.13.0.tar.gz", hash = "sha256:3b9909bc96b0edc6b01586e1eed05e71174ef4e04c71da5786370cebea53ad74"},
+    {file = "python_dotenv-0.13.0-py2.py3-none-any.whl", hash = "sha256:25c0ff1a3e12f4bde8d592cc254ab075cfe734fc5dd989036716fd17ee7e5ec7"},
 ]
 pytz = [
     {file = "pytz-2019.3-py2.py3-none-any.whl", hash = "sha256:1c557d7d0e871de1f5ccd5833f60fb2550652da6be2693c1e02300743d21500d"},

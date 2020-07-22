@@ -2,6 +2,9 @@ parameters:
   databricksbundle:
     enableNotebookErrorHandler: True
 
+    pipeline:
+      serviceResolvers:
+
 services:
   databricksbundle.dbutils.DatabricksConnectDbUtilsFactory:
 
@@ -11,3 +14,9 @@ services:
 
   databricksbundle.dbutils.DbUtilsWrapper:
     factory: ['@databricksbundle.dbutils.AutodetectionDbUtilsFactory', 'create']
+
+  databricksbundle.pipeline.function.ServiceResolver:
+    arguments:
+      - '%databricksbundle.pipeline.serviceResolvers%'
+
+  databricksbundle.pipeline.function.ServicesResolver:
