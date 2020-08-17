@@ -1,38 +1,22 @@
 parameters:
   databricksbundle:
-
     databricksConnect:
       connection:
         orgId:
-        port: 8787 # @deprecated, will be changed to 15001 in the next major version
+        port: 15001
         driverBindAddress: 127.0.0.1
       spark:
         extraConfig:
           spark.sql.session.timeZone: 'Etc/UTC'
           spark.sql.execution.arrow.fallback.enabled: 'true'
 
-    databricks:
-      spark:
-        extraConfig:
-
 services:
-  databricksbundle.spark.config.databricksExtraConfig:
-    class: databricksbundle.spark.config.DictConfigConfigurator
-    arguments:
-      - '%databricksbundle.databricks.spark.extraConfig%'
-    tags:
-      - databricks.configurator
-
   databricksbundle.spark.config.databricksConnectExtraConfig:
     class: databricksbundle.spark.config.DictConfigConfigurator
     arguments:
       - '%databricksbundle.databricksConnect.spark.extraConfig%'
     tags:
       - databricksConnect.configurator
-
-  databricksbundle.spark.DatabricksSessionFactory:
-    arguments:
-      - !tagged databricks.configurator
 
   databricksbundle.spark.DatabricksConnectSessionFactory:
     arguments:
@@ -44,7 +28,5 @@ services:
       - '%databricksbundle.databricksConnect.connection.driverBindAddress%'
       - !tagged databricksConnect.configurator
 
-  databricksbundle.spark.AutodetectionSessionFactory:
-
   pyspark.sql.session.SparkSession:
-    factory: ['@databricksbundle.spark.AutodetectionSessionFactory', 'create']
+    factory: ['@databricksbundle.spark.DatabricksConnectSessionFactory', 'create']

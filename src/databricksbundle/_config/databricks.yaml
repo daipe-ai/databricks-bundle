@@ -1,0 +1,20 @@
+parameters:
+  databricksbundle:
+    databricks:
+      spark:
+        extraConfig:
+
+services:
+  databricksbundle.spark.config.databricksExtraConfig:
+    class: databricksbundle.spark.config.DictConfigConfigurator
+    arguments:
+      - '%databricksbundle.databricks.spark.extraConfig%'
+    tags:
+      - databricks.configurator
+
+  databricksbundle.spark.DatabricksSessionFactory:
+    arguments:
+      - !tagged databricks.configurator
+
+  pyspark.sql.session.SparkSession:
+    factory: ['@databricksbundle.spark.DatabricksSessionFactory', 'create']

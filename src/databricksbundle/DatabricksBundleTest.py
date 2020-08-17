@@ -31,7 +31,7 @@ class DatabricksBundleTest(unittest.TestCase):
 
             def _registerBundles(self) -> List[Bundle]:
                 return [
-                    DatabricksBundle()
+                    DatabricksBundle('spark_test.yaml')
                 ]
 
         kernel = Kernel(

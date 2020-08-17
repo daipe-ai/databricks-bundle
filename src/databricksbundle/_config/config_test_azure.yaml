@@ -1,6 +1,3 @@
-imports:
-  - '@databricksbundle/spark/spark_autodetect.yaml'
-
 parameters:
   databricksbundle:
     databricksConnect:
