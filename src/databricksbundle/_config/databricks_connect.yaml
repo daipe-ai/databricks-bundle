@@ -11,6 +11,11 @@ parameters:
           spark.sql.execution.arrow.fallback.enabled: 'true'
 
 services:
+  databricksbundle.dbutils.DatabricksConnectDbUtilsFactory:
+
+  databricksbundle.dbutils.DbUtilsWrapper:
+    factory: ['@databricksbundle.dbutils.DatabricksConnectDbUtilsFactory', 'create']
+
   databricksbundle.spark.config.databricksConnectExtraConfig:
     class: databricksbundle.spark.config.DictConfigConfigurator
     arguments:

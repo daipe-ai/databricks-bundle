@@ -5,6 +5,11 @@ parameters:
         extraConfig:
 
 services:
+  databricksbundle.dbutils.DatabricksDbUtilsFactory:
+
+  databricksbundle.dbutils.DbUtilsWrapper:
+    factory: ['@databricksbundle.dbutils.DatabricksDbUtilsFactory', 'create']
+
   databricksbundle.spark.config.databricksExtraConfig:
     class: databricksbundle.spark.config.DictConfigConfigurator
     arguments:
