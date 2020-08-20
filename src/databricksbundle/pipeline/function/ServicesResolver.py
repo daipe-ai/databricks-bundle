@@ -14,6 +14,6 @@ class ServicesResolver:
         functionArguments = inspectFunction(fun)
 
         def resolve(inspectedArgument):
-            return self.__serviceResolver.resolve(inspectedArgument, pipelinePath)
+            return self.__serviceResolver.resolve(inspectedArgument.dtype, pipelinePath)
 
         return tuple(map(resolve, functionArguments[startIndex:]))
