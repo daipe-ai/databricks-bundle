@@ -3,6 +3,7 @@ parameters:
     databricksConnect:
       connection:
         orgId:
+        token: '%env(DBX_TOKEN)%'
         port: 15001
         driverBindAddress: 127.0.0.1
       spark:
