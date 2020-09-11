@@ -1,3 +1,4 @@
+import sys
 from databricksbundle.dbutils.IPythonDbUtilsResolver import resolveDbUtils
 
 def getNotebookContext():
@@ -8,3 +9,6 @@ def getUserEmail():
 
 def getNotebookPath():
     return getNotebookContext().notebookPath().get()
+
+def isNotebookEnvironment():
+    return sys.argv and sys.argv[0][-15:] == '/PythonShell.py'
