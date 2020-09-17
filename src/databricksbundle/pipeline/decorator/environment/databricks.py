@@ -3,10 +3,10 @@ import os
 from pathlib import Path
 from typing import Tuple
 from databricksbundle.display import display
+from databricksbundle.pipeline.decorator.containerLoader import loadContainerUsingEnvVar
 from databricksbundle.pipeline.function.ServicesResolver import ServicesResolver
 from databricksbundle.pipeline.decorator.static_init import static_init
 from databricksbundle.pipeline.decorator.argsChecker import checkArgs
-from injecta.dtype.classLoader import loadClass
 from databricksbundle.notebook.helpers import getNotebookPath
 from databricksbundle.pipeline.decorator.executor.dataFrameLoader import loadDataFrame
 from databricksbundle.pipeline.decorator.executor.transformation import transform
@@ -19,15 +19,7 @@ class PipelineDecorator:
 
     @classmethod
     def static_init(cls):
-        if 'CONTAINER_INIT_FUNCTION' not in os.environ:
-            raise Exception('CONTAINER_INIT_FUNCTION environment variable must be set on cluster')
-
-        containerInitFunctionPath = os.environ['CONTAINER_INIT_FUNCTION']
-        containerInitModuleName = containerInitFunctionPath[0:containerInitFunctionPath.rfind('.')]
-        containerInitFunctionName = containerInitFunctionPath[containerInitFunctionPath.rfind('.') + 1:]
-
-        containerInitFunction = loadClass(containerInitModuleName, containerInitFunctionName)
-        container = containerInitFunction(os.environ['APP_ENV'])
+        container = loadContainerUsingEnvVar(os.environ['APP_ENV'])
 
         cls._pipelinePath = Path(getNotebookPath())
         cls._servicesResolver = container.get(ServicesResolver)

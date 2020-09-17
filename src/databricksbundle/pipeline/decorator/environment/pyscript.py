@@ -3,6 +3,7 @@ import os
 import sys
 from pathlib import Path
 from typing import Tuple
+from databricksbundle.pipeline.decorator.containerLoader import containerInitEnvVarDefined, loadContainerUsingEnvVar
 from databricksbundle.pipeline.function.ServicesResolver import ServicesResolver
 from pyfonybundles.appContainerInit import initAppContainer
 from databricksbundle.pipeline.decorator.static_init import static_init
@@ -18,7 +19,10 @@ class PipelineDecorator:
 
     @classmethod
     def static_init(cls):
-        container = initAppContainer(os.environ['APP_ENV'])
+        if containerInitEnvVarDefined():
+            container = loadContainerUsingEnvVar(os.environ['APP_ENV'])
+        else:
+            container = initAppContainer(os.environ['APP_ENV'])
 
         cls._pipelinePath = Path(sys.argv[0])
         cls._servicesResolver = container.get(ServicesResolver)
