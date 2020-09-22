@@ -17,9 +17,9 @@ services:
     tags:
       - databricks.configurator
 
-  databricksbundle.spark.DatabricksSessionFactory:
+  databricksbundle.spark.NotebookSessionFactory:
     arguments:
       - !tagged databricks.configurator
 
   pyspark.sql.session.SparkSession:
-    factory: ['@databricksbundle.spark.DatabricksSessionFactory', 'create']
+    factory: ['@databricksbundle.spark.NotebookSessionFactory', 'create']

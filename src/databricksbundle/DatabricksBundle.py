@@ -10,7 +10,10 @@ class DatabricksBundle(Bundle):
     @staticmethod
     def autodetect():
         if isDatabricks():
-            return DatabricksBundle('databricks.yaml')
+            if isNotebookEnvironment():
+                return DatabricksBundle('databricks_notebook.yaml')
+
+            return DatabricksBundle('databricks_script.yaml')
 
         return DatabricksBundle('databricks_connect.yaml')
 

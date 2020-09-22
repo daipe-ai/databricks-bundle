@@ -4,7 +4,7 @@ from databricksbundle.spark.SparkSessionLazy import SparkSessionLazy
 import IPython
 from databricksbundle.spark.config.ConfiguratorInterface import ConfiguratorInterface
 
-class DatabricksSessionFactory:
+class NotebookSessionFactory:
 
     def __init__(
         self,

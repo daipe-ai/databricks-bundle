@@ -2,6 +2,8 @@
 import sys
 from pathlib import Path
 from typing import Tuple
+from databricksbundle.detector import isDatabricks
+from databricksbundle.notebook.helpers import isNotebookEnvironment
 from databricksbundle.pipeline.decorator.containerLoader import containerInitEnvVarDefined
 from databricksbundle.pipeline.function.ServicesResolver import ServicesResolver
 from databricksbundle.pipeline.decorator.argsChecker import checkArgs
@@ -18,6 +20,12 @@ def _getContainer():
     return container
 
 def _getPipelinePath():
+    if isDatabricks() and not isNotebookEnvironment():
+        if len(sys.argv) == 1:
+            raise Exception('spark_python_task.parameters in Databricks job configuration must contain real pipeline path')
+
+        return Path(sys.argv[1])
+
     return Path(sys.argv[0])
 
 def _resolveServices(fun, index: int):
