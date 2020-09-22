@@ -1,48 +1,38 @@
 # pylint: disable = invalid-name
-import os
 from pathlib import Path
 from typing import Tuple
 from databricksbundle.display import display
-from databricksbundle.pipeline.decorator.containerLoader import loadContainerUsingEnvVar
 from databricksbundle.pipeline.function.ServicesResolver import ServicesResolver
-from databricksbundle.pipeline.decorator.static_init import static_init
 from databricksbundle.pipeline.decorator.argsChecker import checkArgs
 from databricksbundle.notebook.helpers import getNotebookPath
 from databricksbundle.pipeline.decorator.executor.dataFrameLoader import loadDataFrame
 from databricksbundle.pipeline.decorator.executor.transformation import transform
 from databricksbundle.pipeline.decorator.executor.dataFrameSaver import saveDataFrame
 
-@static_init
-class PipelineDecorator:
+def _resolveServices(fun, index: int):
+    from databricksbundle.container.envVarContainerLoader import container # pylint: disable = import-outside-toplevel
 
-    _servicesResolver: ServicesResolver
+    return container.get(ServicesResolver).resolve(fun, index, Path(getNotebookPath()))  # pylint: disable = no-member
 
-    @classmethod
-    def static_init(cls):
-        container = loadContainerUsingEnvVar(os.environ['APP_ENV'])
-
-        cls._pipelinePath = Path(getNotebookPath())
-        cls._servicesResolver = container.get(ServicesResolver)
-
-class pipelineFunction(PipelineDecorator):
+class pipelineFunction:
 
     def __init__(self, *args, **kwargs): # pylint: disable = unused-argument
         checkArgs(args, self.__class__.__name__)
 
     def __call__(self, fun, *args, **kwargs):
-        services = self._servicesResolver.resolve(fun, 0, self._pipelinePath) # pylint: disable = no-member
+        services = _resolveServices(fun, 0)
         fun(*services)
 
         return fun
 
-class dataFrameLoader(PipelineDecorator):
+class dataFrameLoader:
 
     def __init__(self, *args, **kwargs):
         self._displayEnabled = kwargs.get('display', False)
         checkArgs(args, self.__class__.__name__)
 
     def __call__(self, fun, *args, **kwargs):
-        services = self._servicesResolver.resolve(fun, 0, self._pipelinePath) # pylint: disable = no-member
+        services = _resolveServices(fun, 0)
         df = loadDataFrame(fun, services)
 
         if self._displayEnabled:
@@ -50,15 +40,14 @@ class dataFrameLoader(PipelineDecorator):
 
         return fun
 
-class transformation(PipelineDecorator):
+class transformation:
 
     def __init__(self, *args, **kwargs):
         self._sources = args # type: Tuple[callable]
         self._displayEnabled = kwargs.get('display', False)
 
     def __call__(self, fun, *args, **kwargs):
-        startIndex = len(self._sources)
-        services = self._servicesResolver.resolve(fun, startIndex, self._pipelinePath) # pylint: disable = no-member
+        services = _resolveServices(fun, len(self._sources))
         df = transform(fun, self._sources, services)
 
         if self._displayEnabled:
@@ -66,13 +55,13 @@ class transformation(PipelineDecorator):
 
         return fun
 
-class dataFrameSaver(PipelineDecorator):
+class dataFrameSaver:
 
     def __init__(self, *args):
         self._sources = args # type: Tuple[callable]
 
     def __call__(self, fun, *args, **kwargs):
-        services = self._servicesResolver.resolve(fun, 1, self._pipelinePath) # pylint: disable = no-member
+        services = _resolveServices(fun, 1)
         saveDataFrame(fun, self._sources, services)
 
         return fun
