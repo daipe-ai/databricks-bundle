@@ -27,7 +27,7 @@ packages = [
 python = "~3.7.3"
 pyfony-bundles = "0.2.*"
 ipython = "7.*"
-injecta = "^0.8.4"
+injecta = "^0.8.9"
 pandas = ">=0.24.2"
 pyarrow = "^0.16.0"
 

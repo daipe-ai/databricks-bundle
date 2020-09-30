@@ -6,8 +6,8 @@ parameters:
       serviceResolvers:
 
 services:
-  databricksbundle.pipeline.function.ServiceResolver:
+  databricksbundle.pipeline.function.ArgumentResolver:
     arguments:
       - '%databricksbundle.pipeline.serviceResolvers%'
 
-  databricksbundle.pipeline.function.ServicesResolver:
+  databricksbundle.pipeline.function.ArgumentsResolver:

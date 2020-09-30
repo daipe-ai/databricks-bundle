@@ -1,7 +1,7 @@
-from typing import List, Tuple
+from typing import Tuple
 from pyspark.sql import DataFrame
 
-def transform(fun: callable, sources: Tuple[callable], services: List[object]) -> DataFrame:
+def transform(fun: callable, sources: Tuple[callable], arguments: tuple) -> DataFrame:
     g = fun.__globals__
 
     def transformSource(source: callable):
@@ -9,7 +9,7 @@ def transform(fun: callable, sources: Tuple[callable], services: List[object]) -
 
     dataframesToUse = tuple(map(transformSource, sources))
 
-    df = fun(*(dataframesToUse + services))
+    df = fun(*(dataframesToUse + arguments))
     g[fun.__name__ + '_df'] = df
 
     return df

@@ -1,11 +1,11 @@
-from typing import List, Tuple
+from typing import Tuple
 
-def saveDataFrame(fun: callable, sources: Tuple[callable], services: List[object]):
+def saveDataFrame(fun: callable, sourceFunctions: Tuple[callable], arguments: tuple):
     g = fun.__globals__
 
     def transformSource(source: callable):
         return g[source.__name__ + '_df']
 
-    dataframesToUse = tuple(map(transformSource, sources))
+    dataframesToUse = tuple(map(transformSource, sourceFunctions))
 
-    fun(*(dataframesToUse + services))
+    fun(*(dataframesToUse + arguments))
