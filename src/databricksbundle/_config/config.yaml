@@ -5,6 +5,7 @@ parameters:
     pipeline:
       serviceResolvers:
         logging.Logger: '@databricksbundle.pipeline.function.service.LoggerResolver'
+        box.Box: '@databricksbundle.pipeline.function.service.PipelineParamsResolver'
 
 services:
   databricksbundle.pipeline.function.ArgumentResolver:
@@ -14,3 +15,5 @@ services:
   databricksbundle.pipeline.function.ArgumentsResolver:
 
   databricksbundle.pipeline.function.service.LoggerResolver:
+
+  databricksbundle.pipeline.function.service.PipelineParamsResolver:
