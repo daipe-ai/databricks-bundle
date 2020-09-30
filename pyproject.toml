@@ -30,6 +30,7 @@ ipython = "7.*"
 injecta = "^0.8.9"
 pandas = ">=0.24.2"
 pyarrow = "^0.16.0"
+logger-bundle = "0.5.*"
 
 [tool.poetry.dev-dependencies]
 databricks-connect = "6.2.* || 6.4.*"

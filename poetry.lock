@@ -64,7 +64,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 version = "0.4.3"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Log formatting with colors!"
 name = "colorlog"
 optional = false
@@ -210,7 +210,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "1.4.3"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Logger bundle for the Pyfony framework"
 name = "logger-bundle"
 optional = false
@@ -569,7 +569,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools"]
 
 [metadata]
-content-hash = "aeac58ed4e3bd1db11085d9fef5118132fbd3791f9b3e421707735bc6b0a94ed"
+content-hash = "312e44988e4634b1bee6476aee2deaf4b3d661270c39bf031a03ef2816b12001"
 python-versions = "~3.7.3"
 
 [metadata.files]

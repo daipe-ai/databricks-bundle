@@ -3,6 +3,7 @@ from injecta.testing.servicesTester import testServices
 from injecta.config.YamlConfigReader import YamlConfigReader
 from injecta.package.pathResolver import resolvePath
 from typing import List
+from loggerbundle.LoggerBundle import LoggerBundle
 from pyfony.kernel.BaseKernel import BaseKernel
 from pyfonybundles.Bundle import Bundle
 from databricksbundle.DatabricksBundle import DatabricksBundle
@@ -31,6 +32,7 @@ class DatabricksBundleTest(unittest.TestCase):
 
             def _registerBundles(self) -> List[Bundle]:
                 return [
+                    LoggerBundle(),
                     DatabricksBundle('spark_test.yaml')
                 ]
 
