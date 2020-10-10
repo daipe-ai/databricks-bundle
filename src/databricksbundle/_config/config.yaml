@@ -17,3 +17,5 @@ services:
   databricksbundle.notebook.function.service.LoggerResolver:
 
   databricksbundle.notebook.function.service.NotebookParamsResolver:
+
+  databricksbundle.notebook.NotebookPathResolver:

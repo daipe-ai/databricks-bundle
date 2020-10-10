@@ -1,11 +1,8 @@
 # pylint: disable = invalid-name
-import sys
-from pathlib import Path
 from typing import Tuple, List
 from injecta.service.class_.InspectedArgument import InspectedArgument
-from databricksbundle.detector import isDatabricks
 from databricksbundle.display import display
-from databricksbundle.notebook.helpers import isNotebookEnvironment
+from databricksbundle.notebook.NotebookPathResolver import NotebookPathResolver
 from databricksbundle.notebook.decorator.containerLoader import containerInitEnvVarDefined
 from databricksbundle.notebook.function.ArgumentsResolver import ArgumentsResolver
 from databricksbundle.notebook.decorator.argsChecker import checkArgs
@@ -22,23 +19,10 @@ def _getContainer():
 
     return container
 
-def _getNotebookPath():
-    if isDatabricks():
-        if isNotebookEnvironment():
-            from databricksbundle.notebook.helpers import getNotebookPath # pylint: disable = import-outside-toplevel
-
-            return Path(getNotebookPath())
-
-        if len(sys.argv) == 1:
-            raise Exception('spark_python_task.parameters in Databricks job configuration must contain real notebook path')
-
-        return Path(sys.argv[1])
-
-    return Path(sys.argv[0])
-
 def _resolveArguments(inspectedArguments: List[InspectedArgument], decoratorArgs: tuple):
     argumentsResolver: ArgumentsResolver = _getContainer().get(ArgumentsResolver)
-    return argumentsResolver.resolve(inspectedArguments, decoratorArgs, _getNotebookPath())
+    notebookPathResolver: NotebookPathResolver = _getContainer().get(NotebookPathResolver)
+    return argumentsResolver.resolve(inspectedArguments, decoratorArgs, notebookPathResolver.resolve())
 
 def _notebookFunctionExecuted(fun):
     return fun.__module__ == '__main__'
