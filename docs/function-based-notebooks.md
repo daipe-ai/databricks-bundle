@@ -1,9 +1,9 @@
-## Writing functional pipelines
+## Writing function-based notebooks
 
-This bundle allows you to write functional pipelines, that provides the same user-experience as if you code without any functions.
+This bundle allows you to write function-based notebooks, that provides the same user-experience as if you code without any functions.
 Just write the function, annotate it with a proper decorator and run the cell.  
 
-There are **4 types of pipeline functions**:
+There are **4 types of notebook functions**:
  
 `@dataFrameLoader` - loads some Spark dataframe (from Hive table, csv, ...) and returns it
 
@@ -17,10 +17,10 @@ There are **4 types of pipeline functions**:
 
 ![alt text](./dataFrameSaver.png)
 
-`@pipelineFunction` - general pipeline function that may contain any arbitrary code; it gets automatically invoked once you run the notebook cell 
+`@notebookFunction` - general notebook function that may contain any arbitrary code; it gets automatically invoked once you run the notebook cell 
 
-![alt text](./pipelineFunction.png)
+![alt text](./notebookFunction.png)
 
 ___
 
-Next section: [Recommended pipelines structure](structure.md)
+Next section: [Recommended notebooks structure](structure.md)

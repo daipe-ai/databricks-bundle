@@ -2,18 +2,18 @@ parameters:
   databricksbundle:
     enableNotebookErrorHandler: True
 
-    pipeline:
+    notebook:
       serviceResolvers:
-        logging.Logger: '@databricksbundle.pipeline.function.service.LoggerResolver'
-        box.Box: '@databricksbundle.pipeline.function.service.PipelineParamsResolver'
+        logging.Logger: '@databricksbundle.notebook.function.service.LoggerResolver'
+        box.Box: '@databricksbundle.notebook.function.service.NotebookParamsResolver'
 
 services:
-  databricksbundle.pipeline.function.ArgumentResolver:
+  databricksbundle.notebook.function.ArgumentResolver:
     arguments:
-      - '%databricksbundle.pipeline.serviceResolvers%'
+      - '%databricksbundle.notebook.serviceResolvers%'
 
-  databricksbundle.pipeline.function.ArgumentsResolver:
+  databricksbundle.notebook.function.ArgumentsResolver:
 
-  databricksbundle.pipeline.function.service.LoggerResolver:
+  databricksbundle.notebook.function.service.LoggerResolver:
 
-  databricksbundle.pipeline.function.service.PipelineParamsResolver:
+  databricksbundle.notebook.function.service.NotebookParamsResolver:

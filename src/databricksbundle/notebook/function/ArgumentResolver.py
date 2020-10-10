@@ -5,7 +5,7 @@ from injecta.dtype.AbstractType import AbstractType
 from injecta.dtype.classLoader import loadClass
 from injecta.parameter.allPlaceholdersReplacer import replaceAllPlaceholders, findAllPlaceholders
 from injecta.service.class_.InspectedArgument import InspectedArgument
-from databricksbundle.pipeline.function.service.ServiceResolverInterface import ServiceResolverInterface
+from databricksbundle.notebook.function.service.ServiceResolverInterface import ServiceResolverInterface
 
 class ArgumentResolver:
 
@@ -17,7 +17,7 @@ class ArgumentResolver:
         self.__serviceResolversMapping = serviceResolvers or []
         self.__container = container
 
-    def resolve(self, functionArgument: InspectedArgument, decoratorArgument, pipelinePath: Path):
+    def resolve(self, functionArgument: InspectedArgument, decoratorArgument, notebookPath: Path):
         argumentType = functionArgument.dtype
 
         if decoratorArgument is not None:
@@ -42,7 +42,7 @@ class ArgumentResolver:
             serviceResolverName = self.__serviceResolversMapping[argumentTypeStr][1:]
             serviceResolver: ServiceResolverInterface = self.__container.get(serviceResolverName)
 
-            return serviceResolver.resolve(pipelinePath)
+            return serviceResolver.resolve(notebookPath)
 
         class_ = loadClass(argumentType.moduleName, argumentType.className) # pylint: disable = invalid-name
 

@@ -1,4 +1,4 @@
 import os
-from databricksbundle.pipeline.decorator.containerLoader import loadContainerUsingEnvVar
+from databricksbundle.notebook.decorator.containerLoader import loadContainerUsingEnvVar
 
 container = loadContainerUsingEnvVar(os.environ['APP_ENV'])

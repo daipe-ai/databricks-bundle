@@ -5,8 +5,8 @@ from box import Box
 from injecta.container.ContainerInterface import ContainerInterface
 from injecta.dtype.DType import DType
 from injecta.service.class_.InspectedArgument import InspectedArgument
-from databricksbundle.pipeline.function.ArgumentResolver import ArgumentResolver
-from databricksbundle.pipeline.function.service.ServiceResolverInterface import ServiceResolverInterface
+from databricksbundle.notebook.function.ArgumentResolver import ArgumentResolver
+from databricksbundle.notebook.function.service.ServiceResolverInterface import ServiceResolverInterface
 from databricksbundle.spark.ScriptSessionFactory import ScriptSessionFactory
 
 class ArgumentResolverTest(unittest.TestCase):
@@ -79,7 +79,7 @@ class ArgumentResolverTest(unittest.TestCase):
     def __createDummyContainer(self):
         class DummyLoggerResolver(ServiceResolverInterface):
 
-            def resolve(self, pipelinePath: Path) -> object:
+            def resolve(self, notebookPath: Path) -> object:
                 return logging.getLogger('test_logger')
 
         class DummyContainer(ContainerInterface):

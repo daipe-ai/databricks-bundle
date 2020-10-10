@@ -1,6 +1,6 @@
-## Recommended pipelines structure
+## Recommended notebooks structure
 
-In Bricksflow, it is recommended to divide your tables and pipelines into the the following layers:
+In Bricksflow, it is recommended to divide your tables and notebooks into the the following layers:
  
 * **bronze** - "staging layer", raw data from source systems
 * **silver** - most business logic, one or multiple tables per use-case 
@@ -13,7 +13,7 @@ src
     [PROJECT_NAME]
         bronze_db_batch
             tbl_customers
-                tbl_customers.py # pipeline code
+                tbl_customers.py # table creation code
                 schema.py # output table schema definition
             tbl_products
                 tbl_products.py
@@ -48,7 +48,7 @@ src
 **Further notes:**
 
 * Each table should have explicit schema defined (the *schema.py* file)
-* Pipeline python file (*tbl_product_profitability.py*) has the same name as the directory where it is stored (*tbl_product_profitability*)
+* Notebook python file (*tbl_product_profitability.py*) has the same name as the directory where it is stored (*tbl_product_profitability*)
 
 ___
 

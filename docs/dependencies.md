@@ -1,9 +1,9 @@
-## Using dependencies in pipeline functions
+## Using dependencies in notebook functions
 
-Pipelines functions can be injected with objects defined in the app:
+Notebook functions can be injected with objects defined in the app:
 
 ```python
-from databricksbundle.pipeline.decorator.loader import dataFrameLoader
+from databricksbundle.notebook.decorator.loader import dataFrameLoader
 from logging import Logger
 from pyspark.sql.session import SparkSession
 
@@ -23,16 +23,16 @@ The Databricks spark instance itself.
 The [DataLake bundle](https://github.com/bricksflow/datalake-bundle) 's TableNames object allows you to translate table identifiers to final tables names (prefixed with `dev/test/..`).
 
 * `logger: Logger` (`from logging import Logger`)  
-Logger instance for the given pipeline.
+Logger instance for the given notebook.
 
-### (Expert) Passing explicitly defined services into pipeline functions
+### (Expert) Passing explicitly defined services into notebook functions
 
-Services, which cannot be autowired (= classes with multiple instances), can be injected into the pipeline functions explicitly using the `@serviceName` notation:
+Services, which cannot be autowired (= classes with multiple instances), can be injected into the notebook functions explicitly using the `@serviceName` notation:
 
 ```python
-from databricksbundle.pipeline.decorator.loader import pipelineFunction
+from databricksbundle.notebook.decorator.loader import notebookFunction
 
-@pipelineFunction('@my.service')
+@notebookFunction('@my.service')
 def customers_table(myService: MyClass):
     myService.doSomething()
 ```
@@ -41,4 +41,4 @@ See [Injecta](https://github.com/pyfony/injecta)'s documentation for more detail
 
 ___
 
-Next section: [Configuring pipelines](configuration.md)
+Next section: [Configuring notebook functions](configuration.md)

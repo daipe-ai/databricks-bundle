@@ -1,19 +1,19 @@
-## Configuring pipelines
+## Configuring notebook functions
 
-Configuration values defined in your app configuration can be simply passed into the pipeline functions using the `%path.to.config%` notation: 
+Configuration values defined in your app configuration can be simply passed into the notebook functions using the `%path.to.config%` notation: 
 
 ```python
 from logging import Logger
-from databricksbundle.pipeline.decorator.loader import pipelineFunction
+from databricksbundle.notebook.decorator.loader import notebookFunction
 
-@pipelineFunction('%testdata.path%')
+@notebookFunction('%testdata.path%')
 def customers_table(testDataPath: str, logger: Logger):
     logger.info(f'Test data path: {testDataPath}')
 ```
 
-### Using pipeline-specific configuration
+### Using notebook-specific configuration
 
-If you use the [datalake-bundle](https://github.com/bricksflow/datalake-bundle), you can also define pipeline level parameters, which can be passed to each pipeline function:
+If you use the [datalake-bundle](https://github.com/bricksflow/datalake-bundle), you can also define notebook level parameters, which can be passed to each notebook function:
 
 ```yaml
 parameters:
@@ -26,16 +26,16 @@ parameters:
           testDataPath: '/foo/bar'          
 ```
 
-Code of the **customer/my_table.py** pipeline:
+Code of the **customer/my_table.py** notebook:
 
 ```python
 from box import Box
 from logging import Logger
-from databricksbundle.pipeline.decorator.loader import pipelineFunction
+from databricksbundle.notebook.decorator.loader import notebookFunction
 
-@pipelineFunction()
-def customers_table(pipelineParams: Box, logger: Logger):
-    logger.info(f'Test data path: {pipelineParams.testDataPath}')
+@notebookFunction()
+def customers_table(notebookParams: Box, logger: Logger):
+    logger.info(f'Test data path: {notebookParams.testDataPath}')
 ``` 
 
 ___

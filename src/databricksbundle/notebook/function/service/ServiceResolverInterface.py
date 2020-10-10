@@ -4,5 +4,5 @@ from pathlib import Path
 class ServiceResolverInterface(ABC):
 
     @abstractmethod
-    def resolve(self, pipelinePath: Path) -> object:
+    def resolve(self, notebookPath: Path) -> object:
         pass
