@@ -4,7 +4,7 @@ Configuration values defined in your app configuration can be simply passed into
 
 ```python
 from logging import Logger
-from databricksbundle.notebook.decorator.loader import notebookFunction
+from databricksbundle.notebook.decorators import notebookFunction
 
 @notebookFunction('%testdata.path%')
 def customers_table(testDataPath: str, logger: Logger):
@@ -31,7 +31,7 @@ Code of the **customer/my_table.py** notebook:
 ```python
 from box import Box
 from logging import Logger
-from databricksbundle.notebook.decorator.loader import notebookFunction
+from databricksbundle.notebook.decorators import notebookFunction
 
 @notebookFunction()
 def customers_table(notebookParams: Box, logger: Logger):

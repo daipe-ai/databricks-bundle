@@ -3,7 +3,7 @@
 Notebook functions can be injected with objects defined in the app:
 
 ```python
-from databricksbundle.notebook.decorator.loader import dataFrameLoader
+from databricksbundle.notebook.decorators import dataFrameLoader
 from logging import Logger
 from pyspark.sql.session import SparkSession
 
@@ -30,7 +30,7 @@ Logger instance for the given notebook.
 Services, which cannot be autowired (= classes with multiple instances), can be injected into the notebook functions explicitly using the `@serviceName` notation:
 
 ```python
-from databricksbundle.notebook.decorator.loader import notebookFunction
+from databricksbundle.notebook.decorators import notebookFunction
 
 @notebookFunction('@my.service')
 def customers_table(myService: MyClass):
