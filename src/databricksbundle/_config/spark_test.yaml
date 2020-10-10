@@ -1,4 +1,9 @@
 services:
+  databricksbundle.dbutils.DatabricksConnectDbUtilsFactory:
+
+  databricksbundle.dbutils.DbUtilsWrapper:
+    factory: ['@databricksbundle.dbutils.DatabricksConnectDbUtilsFactory', 'create']
+
   databricksbundle.spark.ScriptSessionFactory:
     arguments:
       - []
