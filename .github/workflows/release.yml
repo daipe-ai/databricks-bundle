@@ -36,15 +36,15 @@ jobs:
       - name: Show extracted description
         run: echo "${{ steps.extract_description.outputs.replaced }}"
       - name: Install Poetry
-        uses: dschep/install-poetry-action@v1.3
+        uses: snok/install-poetry@v1.1.1
         with:
           version: 1.0.0
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Install Miniconda
-        uses: goanpeca/setup-miniconda@v1.3.1
+        uses: conda-incubator/setup-miniconda@v2.0.0
         with:
-          miniconda-version: '4.7.12'
+          miniconda-version: 'py38_4.8.3'
       - name: Build package
         run: |
           conda env create -f environment.yml -p .venv
@@ -53,7 +53,7 @@ jobs:
           poetry build -f wheel
       - name: Resolve wheel name
         run: |
-          echo ::set-env name=WHEEL_NAME::$(ls -1 dist/ | grep -e "\.whl$" | sort -r | head -n 1)
+          echo "WHEEL_NAME=$(ls -1 dist/ | grep -e "\.whl$" | sort -r | head -n 1)" >> $GITHUB_ENV
       - name: Create GitHub release
         id: create_release
         uses: actions/create-release@v1
