@@ -14,7 +14,7 @@ jobs:
           miniconda-version: 'py38_4.8.3'
       - name: setup
         run: |
-          ./env-init.sh
+          ./env-init.sh -y --verbose
           eval "$(conda shell.bash hook)"
           source $HOME/.poetry/env
           conda activate $PWD/.venv
