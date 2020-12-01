@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "databricks-bundle"
-version = "0.5.9"
+version = "0.5.10"
 description = "Databricks bundle for the Pyfony framework"
 readme = "README.md"
 repository = "https://github.com/bricksflow/databricks-bundle"
