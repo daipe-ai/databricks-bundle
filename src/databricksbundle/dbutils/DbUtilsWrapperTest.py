@@ -1,29 +1,17 @@
 import unittest
+from databricksbundle.dbutils.DbUtilsMock import DbUtilsMock
 from databricksbundle.dbutils.DbUtilsWrapper import DbUtilsWrapper
 
 class DbUtilsWrapperTest(unittest.TestCase):
 
     def test_objectAttributeDelegation(self):
         def createLazy():
-            from pyspark.dbutils import DBUtils
-            return DBUtils()
+            return DbUtilsMock()
 
         dbUtilsWrapper = DbUtilsWrapper(createLazy)
         result = dbUtilsWrapper.fs.ls('/')
 
         self.assertIsInstance(result, list)
-
-    def test_scalarAttributeDelegation(self):
-        def createLazy():
-            from pyspark.dbutils import DBUtils
-            dbUtils = DBUtils()
-            dbUtils.a = 5
-            return dbUtils
-
-        dbUtilsWrapper = DbUtilsWrapper(createLazy)
-        result = dbUtilsWrapper.a
-
-        self.assertEqual(5, result)
 
     def test_methodWithArgument(self):
         def createLazy():
@@ -37,8 +25,7 @@ class DbUtilsWrapperTest(unittest.TestCase):
 
     def test_delegationNonExistentAttribute(self):
         def createLazy():
-            from pyspark.dbutils import DBUtils
-            return DBUtils()
+            return DbUtilsMock()
 
         dbUtilsWrapper = DbUtilsWrapper(createLazy)
 

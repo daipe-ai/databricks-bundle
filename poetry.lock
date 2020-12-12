@@ -68,11 +68,20 @@ python-dotenv = ">=0.13.0,<0.14.0"
 
 [[package]]
 name = "databricks-connect"
-version = "6.2.0"
+version = "7.3.5"
 description = "Databricks Connect Client"
 category = "dev"
 optional = false
 python-versions = "*"
+
+[package.dependencies]
+py4j = "0.10.9"
+six = "*"
+
+[package.extras]
+ml = ["numpy (>=1.7)"]
+mllib = ["numpy (>=1.7)"]
+sql = ["pandas (>=0.23.2)", "pyarrow (>=0.15.1)"]
 
 [[package]]
 name = "importlib-metadata"
@@ -349,7 +358,7 @@ testing = ["jaraco.itertools"]
 [metadata]
 lock-version = "1.1"
 python-versions = "~3.7.3"
-content-hash = "1e47bcbb293cb4dae20281837a83dd6778e41d54c4ea928450e280615b6edf32"
+content-hash = "b6c3bc710a31c15f5263693c1dd2cd51eafe6175aed46828715aa336121609f3"
 
 [metadata.files]
 astroid = [
@@ -377,7 +386,7 @@ console-bundle = [
     {file = "console_bundle-0.2.5-py3-none-any.whl", hash = "sha256:f2029bbe346001a759b9774ce30455f6d3a80c36c500c8392400194fe12858f7"},
 ]
 databricks-connect = [
-    {file = "databricks-connect-6.2.0.tar.gz", hash = "sha256:b09a69e2bc2419361d044b93cb873715e3a006f8ef6ebd14f567ea3195eecee6"},
+    {file = "databricks-connect-7.3.5.tar.gz", hash = "sha256:c720298b05648f5de8f17de03f93d60ffb30c2d55ce2750e63c17c341a8de5e4"},
 ]
 importlib-metadata = [
     {file = "importlib_metadata-1.5.0-py2.py3-none-any.whl", hash = "sha256:b97607a1a18a5100839aec1dc26a1ea17ee0d93b20b0f008d80a5a050afb200b"},
