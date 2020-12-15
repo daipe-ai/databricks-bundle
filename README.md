@@ -9,7 +9,7 @@ This bundle allows you to create simple functional Databricks pipelines, which c
 Install the bundle via Poetry:
 
 ```
-$ poetry add databricks-bundle && poetry add databricks-connect --dev && poetry add py4j --dev
+$ poetry add databricks-bundle && poetry add databricks-connect --dev
 ```
 
 Add the `DatabricksBundle.autodetect()` to your application's **Kernel.py** to activate it:
