@@ -21,5 +21,8 @@ services:
     arguments:
       - !tagged databricks.configurator
 
+  databricks.notebook.pathResolver:
+    class: databricksbundle.notebook.path.DatabricksScriptPathResolver
+
   pyspark.sql.session.SparkSession:
     factory: ['@databricksbundle.spark.ScriptSessionFactory', 'create']

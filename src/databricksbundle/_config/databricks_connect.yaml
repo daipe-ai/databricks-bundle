@@ -34,5 +34,8 @@ services:
       - '%databricksbundle.databricksConnect.connection.driverBindAddress%'
       - !tagged databricksConnect.configurator
 
+  databricks.notebook.pathResolver:
+    class: databricksbundle.notebook.path.LocalScriptPathResolver
+
   pyspark.sql.session.SparkSession:
     factory: ['@databricksbundle.spark.DatabricksConnectSessionFactory', 'create']

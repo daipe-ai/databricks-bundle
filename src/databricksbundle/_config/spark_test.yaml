@@ -10,3 +10,6 @@ services:
 
   pyspark.sql.session.SparkSession:
     factory: ['@databricksbundle.spark.ScriptSessionFactory', 'create']
+
+  databricks.notebook.pathResolver:
+    class: databricksbundle.notebook.path.TestingPathResolver
