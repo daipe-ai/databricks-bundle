@@ -7,21 +7,33 @@ from databricksbundle.notebook.helpers import getNotebookPath, isNotebookEnviron
 
 class DatabricksBundle(Bundle):
 
+    DATABRICKS_NOTEBOOK = 'databricks_notebook.yaml'
+    DATABRICKS_SCRIPT = 'databricks_script.yaml'
+    DATABRICKS_CONNECT = 'databricks_connect.yaml'
+    DATABRICKS_TEST = 'databricks_test.yaml'
+
     @staticmethod
     def autodetect():
-        if isDatabricks():
-            if isNotebookEnvironment():
-                return DatabricksBundle('databricks_notebook.yaml')
+        def getDatabricksConfig():
+            if isDatabricks():
+                if isNotebookEnvironment():
+                    return DatabricksBundle.DATABRICKS_NOTEBOOK
 
-            return DatabricksBundle('databricks_script.yaml')
+                return DatabricksBundle.DATABRICKS_SCRIPT
 
-        return DatabricksBundle('databricks_connect.yaml')
+            return DatabricksBundle.DATABRICKS_CONNECT
 
-    def __init__(self, sparkConfigFilename: str):
-        self.__sparkConfigFilename = sparkConfigFilename
+        return DatabricksBundle(getDatabricksConfig())
+
+    @staticmethod
+    def createForTesting():
+        return DatabricksBundle(DatabricksBundle.DATABRICKS_TEST)
+
+    def __init__(self, databricksConfig: str):
+        self.__databricksConfig = databricksConfig
 
     def getConfigFiles(self):
-        return ['config.yaml', self.__sparkConfigFilename]
+        return ['config.yaml', 'databricks/' + self.__databricksConfig]
 
     def boot(self, container: ContainerInterface):
         parameters = container.getParameters()

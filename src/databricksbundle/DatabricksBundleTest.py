@@ -33,7 +33,7 @@ class DatabricksBundleTest(unittest.TestCase):
             def _registerBundles(self) -> List[Bundle]:
                 return [
                     LoggerBundle(),
-                    DatabricksBundle('spark_test.yaml')
+                    DatabricksBundle.createForTesting()
                 ]
 
         kernel = Kernel(
