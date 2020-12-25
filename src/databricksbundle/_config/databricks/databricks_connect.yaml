@@ -14,8 +14,8 @@ parameters:
 services:
   databricksbundle.dbutils.DatabricksConnectDbUtilsFactory:
 
-  databricksbundle.dbutils.DbUtilsWrapper:
-    factory: ['@databricksbundle.dbutils.DatabricksConnectDbUtilsFactory', 'create']
+  databricksbundle.notebook.pathResolver:
+    class: databricksbundle.notebook.path.LocalScriptPathResolver
 
   databricksbundle.spark.config.databricksConnectExtraConfig:
     class: databricksbundle.spark.config.DictConfigConfigurator
@@ -34,8 +34,8 @@ services:
       - '%databricksbundle.databricksConnect.connection.driverBindAddress%'
       - !tagged databricksConnect.configurator
 
-  databricks.notebook.pathResolver:
-    class: databricksbundle.notebook.path.LocalScriptPathResolver
+  pyspark.dbutils.DBUtils:
+    factory: ['@databricksbundle.dbutils.DatabricksConnectDbUtilsFactory', 'create']
 
   pyspark.sql.session.SparkSession:
     factory: ['@databricksbundle.spark.DatabricksConnectSessionFactory', 'create']

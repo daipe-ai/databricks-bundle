@@ -11,9 +11,9 @@ def customers_table(testDataPath: str, logger: Logger):
     logger.info(f'Test data path: {testDataPath}')
 ```
 
-### Using notebook-specific configuration
+### Using table-specific configuration
 
-If you use the [datalake-bundle](https://github.com/bricksflow/datalake-bundle), you can also define notebook level parameters, which can be passed to each notebook function:
+If you use the [datalake-bundle](https://github.com/bricksflow/datalake-bundle), you can also define table level parameters, which can be passed to any notebook function:
 
 ```yaml
 parameters:
@@ -23,21 +23,18 @@ parameters:
         schemaPath: 'myapp.client.schema'
         targetPath: '/data/clients.delta'
         params:
-          testDataPath: '/foo/bar'          
+          testDataPath: '/foo/bar'
 ```
 
 Code of the **customer/my_table.py** notebook:
 
 ```python
-from box import Box
 from logging import Logger
-from databricksbundle.notebook.decorators import notebookFunction
+from databricksbundle.notebook.decorators import notebookFunction, tableParams
 
-@notebookFunction()
-def customers_table(notebookParams: Box, logger: Logger):
-    logger.info(f'Test data path: {notebookParams.testDataPath}')
-``` 
-
-___
+@notebookFunction(tableParams('customer.my_table').testDataPath)
+def customers_table(testDataPath: str, logger: Logger):
+    logger.info(f'Test data path: {testDataPath}')
+```
 
 Next section: [Databricks Connect setup](databricks-connect.md)

@@ -7,8 +7,8 @@ parameters:
 services:
   databricksbundle.dbutils.DatabricksDbUtilsFactory:
 
-  databricksbundle.dbutils.DbUtilsWrapper:
-    factory: ['@databricksbundle.dbutils.DatabricksDbUtilsFactory', 'create']
+  databricksbundle.notebook.pathResolver:
+    class: databricksbundle.notebook.path.DatabricksNotebookPathResolver
 
   databricksbundle.spark.config.databricksExtraConfig:
     class: databricksbundle.spark.config.DictConfigConfigurator
@@ -21,8 +21,8 @@ services:
     arguments:
       - !tagged databricks.configurator
 
-  databricks.notebook.pathResolver:
-    class: databricksbundle.notebook.path.DatabricksNotebookPathResolver
+  pyspark.dbutils.DBUtils:
+    factory: ['@databricksbundle.dbutils.DatabricksDbUtilsFactory', 'create']
 
   pyspark.sql.session.SparkSession:
     factory: ['@databricksbundle.spark.NotebookSessionFactory', 'create']

@@ -12,22 +12,6 @@ Install the bundle via Poetry:
 $ poetry add databricks-bundle && poetry add databricks-connect --dev
 ```
 
-Add the `DatabricksBundle.autodetect()` to your application's **Kernel.py** to activate it:
-
-```python
-from pyfony.kernel.BaseKernel import BaseKernel
-from databricksbundle.DatabricksBundle import DatabricksBundle
-
-class Kernel(BaseKernel):
-    
-    def _registerBundles(self):
-        return [
-            # ...
-            DatabricksBundle.autodetect(),
-            # ...
-        ]
-```
-
 ## Usage
 
 1. [Writing function-based notebooks](docs/function-based-notebooks.md)
