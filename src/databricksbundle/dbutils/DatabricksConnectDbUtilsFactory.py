@@ -10,6 +10,6 @@ class DatabricksConnectDbUtilsFactory:
         def createLazy():
             from pyspark.dbutils import DBUtils # pylint: disable = import-outside-toplevel
 
-            return DBUtils(self.__spark.sparkContext)
+            return DBUtils(self.__spark)
 
         return DbUtilsWrapper(createLazy)
