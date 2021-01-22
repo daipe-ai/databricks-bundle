@@ -55,21 +55,21 @@ colorama = {version = "*", markers = "sys_platform == \"win32\""}
 
 [[package]]
 name = "console-bundle"
-version = "0.3.0"
+version = "0.3.1"
 description = "Console Bundle for the Pyfony Framework"
 category = "main"
 optional = false
-python-versions = ">=3.7.3,<3.8.0"
+python-versions = ">=3.7,<4.0"
 
 [package.dependencies]
-colorlog = ">=4.0.0,<4.1.0"
-pyfony-bundles = ">=0.3.0,<0.4.0"
-pyfony-core = ">=0.7.0,<0.8.0"
-python-dotenv = ">=0.13.0,<0.14.0"
+colorlog = ">=4.0,<5.0"
+pyfony-bundles = ">=0.3.2,<0.4.0"
+pyfony-core = ">=0.7.1,<0.8.0"
+python-dotenv = ">=0.13.0,<1.0.0"
 
 [[package]]
 name = "databricks-connect"
-version = "7.3.5"
+version = "7.3.7"
 description = "Databricks Connect Client"
 category = "dev"
 optional = false
@@ -102,15 +102,15 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 
 [[package]]
 name = "injecta"
-version = "0.9.0"
+version = "0.9.1"
 description = "Dependency Injection Container Library"
 category = "main"
 optional = false
-python-versions = ">=3.7.3,<3.8.0"
+python-versions = ">=3.7,<4.0"
 
 [package.dependencies]
-python-box = ">=3.4.0,<3.5.0"
-PyYAML = ">=5.1.0,<5.2.0"
+python-box = ">=3.4,<4.0"
+PyYAML = ">=5.1,<6.0"
 tomlkit = ">=0.5.8,<0.6.0"
 
 [[package]]
@@ -137,15 +137,15 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
 name = "logger-bundle"
-version = "0.6.0"
+version = "0.6.1"
 description = "Logger bundle for the Pyfony framework"
 category = "main"
 optional = false
-python-versions = ">=3.7.3,<3.8.0"
+python-versions = ">=3.7,<4.0"
 
 [package.dependencies]
-colorlog = ">=4.0.0,<4.1.0"
-pyfony-bundles = ">=0.3.0,<0.4.0"
+colorlog = ">=4.0,<5.0"
+pyfony-bundles = ">=0.3.2,<0.4.0"
 
 [[package]]
 name = "mccabe"
@@ -206,29 +206,29 @@ python-versions = "*"
 
 [[package]]
 name = "pyfony-bundles"
-version = "0.3.1"
+version = "0.3.2"
 description = "Pyfony Framework bundles base package"
 category = "main"
 optional = false
-python-versions = ">=3.7.3,<3.8.0"
+python-versions = ">=3.7,<4.0"
 
 [package.dependencies]
-importlib-metadata = ">=3.3.0"
+importlib-metadata = ">=3.3,<4.0"
 injecta = ">=0.9.0,<0.10.0"
-python-box = ">=3.4.0,<3.5.0"
-tomlkit = ">=0.5.0,<0.6.0"
+python-box = ">=3.4,<4.0"
+tomlkit = ">=0.5.8,<1.0.0"
 
 [[package]]
 name = "pyfony-core"
-version = "0.7.0"
+version = "0.7.1"
 description = "Pyfony core"
 category = "main"
 optional = false
-python-versions = ">=3.7.3,<3.8.0"
+python-versions = ">=3.7,<4.0"
 
 [package.dependencies]
 injecta = ">=0.9.0,<0.10.0"
-pyfony-bundles = ">=0.3.0,<0.4.0"
+pyfony-bundles = ">=0.3.2,<0.4.0"
 
 [[package]]
 name = "pylint"
@@ -366,8 +366,8 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 
 [metadata]
 lock-version = "1.1"
-python-versions = "~3.7.3"
-content-hash = "57ebb48a3ff338e216a64bd282aa4ecc9470b8f3a8fb3c6a4645a2fd9e57eaa8"
+python-versions = "^3.7"
+content-hash = "57a9e8e5a9fce20e1c356261466d692b7bb64faa12a5bda5391d5fa0fbbd76e8"
 
 [metadata.files]
 astroid = [
@@ -391,17 +391,17 @@ colorlog = [
     {file = "colorlog-4.0.2.tar.gz", hash = "sha256:3cf31b25cbc8f86ec01fef582ef3b840950dea414084ed19ab922c8b493f9b42"},
 ]
 console-bundle = [
-    {file = "console_bundle-0.3.0-py3-none-any.whl", hash = "sha256:da9531bd472810953e09c06f06e96cab612e0a9bce0867efd454d0d4706406a2"},
+    {file = "console_bundle-0.3.1-py3-none-any.whl", hash = "sha256:37a253d55903fc4ee1ffe811b3d3a8d1f647caa29f3debed4a18cf75a72b3e97"},
 ]
 databricks-connect = [
-    {file = "databricks-connect-7.3.5.tar.gz", hash = "sha256:c720298b05648f5de8f17de03f93d60ffb30c2d55ce2750e63c17c341a8de5e4"},
+    {file = "databricks-connect-7.3.7.tar.gz", hash = "sha256:35ead50a0550e65a7d6fd78e2c8e54095b53514fba85180768a2dbcdd3f2cf0b"},
 ]
 importlib-metadata = [
     {file = "importlib_metadata-3.3.0-py3-none-any.whl", hash = "sha256:bf792d480abbd5eda85794e4afb09dd538393f7d6e6ffef6e9f03d2014cf9450"},
     {file = "importlib_metadata-3.3.0.tar.gz", hash = "sha256:5c5a2720817414a6c41f0a49993908068243ae02c1635a228126519b509c8aed"},
 ]
 injecta = [
-    {file = "injecta-0.9.0-py3-none-any.whl", hash = "sha256:99b29b4327b68e487009ecf504f5718108ed2369912a68ca4f3b564d41d46bcb"},
+    {file = "injecta-0.9.1-py3-none-any.whl", hash = "sha256:cc82692e626ff95105043e31f7b217412eb930631cee784eb9e7090174eb1f20"},
 ]
 isort = [
     {file = "isort-4.3.21-py2.py3-none-any.whl", hash = "sha256:6e811fcb295968434526407adb8796944f1988c5b65e8139058f2014cbe100fd"},
@@ -431,7 +431,7 @@ lazy-object-proxy = [
     {file = "lazy_object_proxy-1.4.3-cp38-cp38-win_amd64.whl", hash = "sha256:59f79fef100b09564bc2df42ea2d8d21a64fdcda64979c0fa3db7bdaabaf6239"},
 ]
 logger-bundle = [
-    {file = "logger_bundle-0.6.0-py3-none-any.whl", hash = "sha256:145578de48e248a24bad072cc47a51759fba8ee15c863b4eedade1e33763ea07"},
+    {file = "logger_bundle-0.6.1-py3-none-any.whl", hash = "sha256:1014a00f861528d999ace9c694480b28f9a047f6fe05eecfac006f778e422c85"},
 ]
 mccabe = [
     {file = "mccabe-0.6.1-py2.py3-none-any.whl", hash = "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42"},
@@ -458,11 +458,10 @@ py4j = [
     {file = "py4j-0.10.9.tar.gz", hash = "sha256:36ec57f43ff8ced260a18aa9a4e46c3500a730cac8860e259cbaa546c2b9db2f"},
 ]
 pyfony-bundles = [
-    {file = "pyfony_bundles-0.3.1-py3-none-any.whl", hash = "sha256:e7e92bec1de451de13dacdd684f999fd1ffbfc7e7375bec1717c08ed249a7de1"},
+    {file = "pyfony_bundles-0.3.2-py3-none-any.whl", hash = "sha256:212a0a2bb7d9ba0faf0f56c283da4da7113d507d196ecde00913281511a11ef2"},
 ]
 pyfony-core = [
-    {file = "pyfony-core-0.7.0.tar.gz", hash = "sha256:868e17fa3e1721e72690a755b11ede33beaa18943eb7d3439998fb60573285c7"},
-    {file = "pyfony_core-0.7.0-py3-none-any.whl", hash = "sha256:62a5391bd02d241d9aba5b78a32ce3d99a5adc10ea626b26aa8998be071ca17e"},
+    {file = "pyfony_core-0.7.1-py3-none-any.whl", hash = "sha256:05138ab80e70c93ea42aae41684a5f6f001486fbc6ca5fc2ca4f44cedab9decc"},
 ]
 pylint = [
     {file = "pylint-2.4.4-py3-none-any.whl", hash = "sha256:886e6afc935ea2590b462664b161ca9a5e40168ea99e5300935f6591ad467df4"},
