@@ -1,5 +1,5 @@
 # pylint: disable = all
-from databricksbundle.notebook.decorators import notebookFunction
+from databricksbundle.notebook.decorator.notebookFunction import notebookFunction
 
 try:
     @notebookFunction

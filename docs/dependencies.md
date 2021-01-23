@@ -1,13 +1,13 @@
-## Using dependencies in notebook functions
+## Using pre-configured objects
 
 Notebook functions can be injected with objects defined in the app:
 
 ```python
-from databricksbundle.notebook.decorators import dataFrameLoader
+from databricksbundle.notebook.decorator.notebookFunction import notebookFunction
 from logging import Logger
 from pyspark.sql.session import SparkSession
 
-@dataFrameLoader()
+@notebookFunction()
 def customers_table(spark: SparkSession, logger: Logger):
     logger.info('Reading my_crm.customers')
 
@@ -19,8 +19,8 @@ The common objects that can be injected are:
 * `spark: SparkSession` (`from pyspark.sql.session import SparkSession`)  
 The Databricks spark instance itself.
 
-* `tableNames: TableNames` (`from datalakebundle.table.TableNames import TableNames`)  
-The [DataLake bundle](https://github.com/bricksflow/datalake-bundle) 's TableNames object allows you to translate table identifiers to final tables names (prefixed with `dev/test/..`).
+* `dbutils: DBUtils` (`from pyspark.dbutils import DBUtils`)  
+[Databricks utilities object](https://docs.databricks.com/dev-tools/databricks-utils.html).
 
 * `logger: Logger` (`from logging import Logger`)  
 Logger instance for the given notebook.
@@ -30,7 +30,7 @@ Logger instance for the given notebook.
 Services, which cannot be autowired (= classes with multiple instances), can be injected into the notebook functions explicitly using the `@serviceName` notation:
 
 ```python
-from databricksbundle.notebook.decorators import notebookFunction
+from databricksbundle.notebook.decorator.notebookFunction import notebookFunction
 
 @notebookFunction('@my.service')
 def customers_table(myService: MyClass):

@@ -1,6 +1,6 @@
 # pylint: disable = all
 import os
-from databricksbundle.notebook.decorators import notebookFunction
+from databricksbundle.notebook.decorator.notebookFunction import notebookFunction
 
 os.environ['APP_ENV'] = 'test_azure'
 

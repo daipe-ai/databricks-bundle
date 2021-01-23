@@ -43,4 +43,4 @@ parameters:
 
 ___
 
-Next section: [Writing function-based notebooks](function-based-notebooks.md)
+Next section: [Writing function-based notebooks](notebook-functions.md)

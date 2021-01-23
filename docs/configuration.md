@@ -2,13 +2,23 @@
 
 Configuration values defined in your app configuration can be simply passed into the notebook functions using the `%path.to.config%` notation: 
 
+Example `config.yaml` configuration:
+
+```yaml
+parameters:
+  csvdata:
+    path: '/data/csv
+```
+
+Example notebook code:
+
 ```python
 from logging import Logger
-from databricksbundle.notebook.decorators import notebookFunction
+from databricksbundle.notebook.decorator.notebookFunction import notebookFunction
 
-@notebookFunction('%testdata.path%')
-def customers_table(testDataPath: str, logger: Logger):
-    logger.info(f'Test data path: {testDataPath}')
+@notebookFunction('%csvdata.path%')
+def customers_table(csvDataPath: str, logger: Logger):
+    logger.info(f'CSV data path: {csvDataPath}')
 ```
 
 Next section: [Databricks Connect setup](databricks-connect.md)

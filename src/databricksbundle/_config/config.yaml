@@ -3,10 +3,6 @@ parameters:
     enableNotebookErrorHandler: True
 
 services:
-  databricksbundle.notebook.decorator.DuplicateColumnsChecker:
-    arguments:
-      - '@databricksbundle.logger'
-
   databricksbundle.notebook.function.ArgumentResolver:
     arguments:
       - '@databricksbundle.logger'
