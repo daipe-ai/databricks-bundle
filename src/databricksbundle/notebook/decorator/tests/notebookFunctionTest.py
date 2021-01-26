@@ -1,4 +1,5 @@
 import unittest
+from types import FunctionType
 
 class notebookFunctionTest(unittest.TestCase):
 
@@ -7,6 +8,7 @@ class notebookFunctionTest(unittest.TestCase):
 
         result = load_data()
 
+        self.assertIsInstance(load_data, FunctionType)
         self.assertEqual(155, result)
 
     def test_error(self):

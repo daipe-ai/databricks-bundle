@@ -19,5 +19,8 @@ def rename_columns(police_number: int, something):
 
 if __name__ == '__main__':
     assert isinstance(load_data, notebookFunction)
+    assert load_data.result == 155
     assert isinstance(load_data2, notebookFunction)
+    assert load_data2.result is None
     assert isinstance(rename_columns, notebookFunction)
+    assert rename_columns.result is None
