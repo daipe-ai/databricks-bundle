@@ -7,7 +7,7 @@ Example `config.yaml` configuration:
 ```yaml
 parameters:
   csvdata:
-    path: '/data/csv
+    path: '/data/csv'
 ```
 
 Example notebook code:
