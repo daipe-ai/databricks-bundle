@@ -41,6 +41,12 @@ parameters:
         orgId: 123456789 # Azure specific parameter
 ```
 
+###How to test Databricks connection?
+To test that your local configuration works properly, activate the virtual environment and run:
+```
+$ console dbx:test-connection --env=dev
+```
+The environment you want to test can be changed in `--env`.
 ___
 
 Next section: [Writing function-based notebooks](notebook-functions.md)
