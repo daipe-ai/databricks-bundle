@@ -12,3 +12,10 @@ services:
   databricksbundle.notebook.logger.NotebookLoggerFactory:
     arguments:
       - '@databricksbundle.notebook.pathResolver'
+
+  databricksbundle.test.DatabricksConnectTestCommand:
+    arguments:
+      - '@consolebundle.logger'
+    tags:
+      - 'console.command'
+
