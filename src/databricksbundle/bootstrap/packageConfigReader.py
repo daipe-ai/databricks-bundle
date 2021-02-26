@@ -14,7 +14,7 @@ def read() -> Config:
     if not entryPoints:
         raise Exception('pyfony.bootstrap entry points is missing in the master package, try rebuilding the package')
 
-    rawConfig = json.loads(entryPoints[0].dist.read_text('bootstrap_config.json'))
+    rawConfig = json.loads(tuple(entryPoints)[0].dist.read_text('bootstrap_config.json'))
 
     return pyfonyConfigFactory.create(rawConfig, 'pyfony.bootstrap entry point')
 
