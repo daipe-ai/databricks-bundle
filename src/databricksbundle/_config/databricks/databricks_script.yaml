@@ -2,18 +2,18 @@ parameters:
   databricksbundle:
     databricks:
       spark:
-        extraConfig:
+        extra_config:
 
 services:
   databricksbundle.dbutils.DatabricksDbUtilsFactory:
 
-  databricksbundle.notebook.pathResolver:
+  databricksbundle.notebook.path_resolver:
     class: databricksbundle.notebook.path.DatabricksScriptPathResolver
 
-  databricksbundle.spark.config.databricksExtraConfig:
+  databricksbundle.spark.config.databricks_extra_config:
     class: databricksbundle.spark.config.DictConfigConfigurator
     arguments:
-      - '%databricksbundle.databricks.spark.extraConfig%'
+      - '%databricksbundle.databricks.spark.extra_config%'
     tags:
       - databricks.configurator
 

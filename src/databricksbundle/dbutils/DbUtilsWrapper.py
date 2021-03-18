@@ -1,31 +1,37 @@
 import types
 import platform
-from databricksbundle.detector import isDatabricks
+from databricksbundle.detector import is_databricks
+
 
 class DbUtilsWrapper:
+    def __init__(self, factory_callback: callable):
+        self._factory_callback = factory_callback
+        self._db_utils = None
 
-    def __init__(self, factoryCallback: callable):
-        self._factoryCallback = factoryCallback
-        self._dbUtils = None
+    def __getattr__(self, attribute_name):
+        if self._db_utils is None:
+            if not is_databricks():
+                from databricksbundle.spark.java_home_setter import set_java_home
+                from databricksbundle.spark.existing_spark_cleanup import (
+                    clean_existing_spark_config,
+                )
 
-    def __getattr__(self, attributeName):
-        if self._dbUtils is None:
-            if not isDatabricks():
-                from databricksbundle.spark.javaHomeSetter import setJavaHome # pylint: disable = import-outside-toplevel
-                from databricksbundle.spark.existingSparkCleanup import cleanExistingSparkConfig  # pylint: disable = import-outside-toplevel
-                setJavaHome()
-                cleanExistingSparkConfig()
+                set_java_home()
+                clean_existing_spark_config()
 
-                if platform.system() == 'Windows':
-                    from databricksbundle.spark.hadoopHomeSetter import setHadoopHomeEnvVar # pylint: disable = import-outside-toplevel
-                    setHadoopHomeEnvVar()
+                if platform.system() == "Windows":
+                    from databricksbundle.spark.hadoop_home_setter import (
+                        set_hadoop_home_env_var,
+                    )
 
-            self._dbUtils = self._factoryCallback()
+                    set_hadoop_home_env_var()
 
-        if hasattr(self._dbUtils, attributeName) is False:
-            raise AttributeError(attributeName)
+            self._db_utils = self._factory_callback()
 
-        attr = getattr(self._dbUtils, attributeName)
+        if hasattr(self._db_utils, attribute_name) is False:
+            raise AttributeError(attribute_name)
+
+        attr = getattr(self._db_utils, attribute_name)
 
         if isinstance(attr, types.FunctionType) is False:
             return attr

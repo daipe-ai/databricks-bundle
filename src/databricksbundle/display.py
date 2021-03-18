@@ -1,16 +1,18 @@
-# pylint: disable = import-outside-toplevel
-from databricksbundle.detector import isDatabricks
+from databricksbundle.detector import is_databricks
 
-def createDisplay():
-    if isDatabricks():
-        import IPython  # pylint: disable = import-error
-        return IPython.get_ipython().user_ns['display']
+
+def create_display():
+    if is_databricks():
+        import IPython
+
+        return IPython.get_ipython().user_ns["display"]
 
     from pyspark.sql.dataframe import DataFrame
 
-    def displayLocal(df: DataFrame):
+    def display_local(df: DataFrame):
         df.show()
 
-    return displayLocal
+    return display_local
 
-display = createDisplay()
+
+display = create_display()

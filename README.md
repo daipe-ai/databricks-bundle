@@ -6,7 +6,7 @@ This bundle allows you to write **beautiful function-based notebooks**.
 
 Compared to bare notebooks, the function-based approach brings the **following advantages**: 
 
-1. create and publish auto-generated documentation and lineage of notebooks and pipelines (Bricksflow PRO) 
+1. create and publish auto-generated documentation and lineage of notebooks and pipelines (Daipe PRO) 
 1. write much cleaner notebooks with properly named code blocks
 1. (unit)test specific notebook functions with ease
 1. use YAML to configure your notebooks for given environment (dev/test/prod/...)
@@ -15,7 +15,7 @@ Compared to bare notebooks, the function-based approach brings the **following a
 Function-based notebooks have been designed to provide the same user-experience as bare notebooks.
 Just write the function, annotate it with the `@notebookFunction` decorator and run the cell.
 
-This bundle is the main part of the [Bricksflow framework](https://github.com/bricksflow/bricksflow).
+This bundle is the main part of the [Daipe framework](https://github.com/daipe/).
 
 ## Installation
 

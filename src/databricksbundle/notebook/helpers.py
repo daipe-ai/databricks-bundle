@@ -1,14 +1,18 @@
 import sys
-from databricksbundle.dbutils.IPythonDbUtilsResolver import resolveDbUtils
+from databricksbundle.dbutils.IPythonDbUtilsResolver import resolve_dbutils
 
-def getNotebookContext():
-    return resolveDbUtils().notebook.entry_point.getDbutils().notebook().getContext()
 
-def getUserEmail():
-    return getNotebookContext().tags().get('user').get()
+def get_notebook_context():
+    return resolve_dbutils().notebook.entry_point.getDbutils().notebook().getContext()
 
-def getNotebookPath():
-    return getNotebookContext().notebookPath().get()
 
-def isNotebookEnvironment():
-    return sys.argv and sys.argv[0][-15:] == '/PythonShell.py'
+def get_user_email():
+    return get_notebook_context().tags().get("user").get()
+
+
+def get_notebook_path():
+    return get_notebook_context().notebookPath().get()
+
+
+def is_notebook_environment():
+    return sys.argv and sys.argv[0][-15:] == "/PythonShell.py"

@@ -2,19 +2,21 @@ from typing import List
 from injecta.service.class_.InspectedArgument import InspectedArgument
 from databricksbundle.notebook.function.ArgumentResolver import ArgumentResolver
 
-class ArgumentsResolver:
 
+class ArgumentsResolver:
     def __init__(
         self,
-        argumentResolver: ArgumentResolver,
+        argument_resolver: ArgumentResolver,
     ):
-        self.__argumentResolver = argumentResolver
+        self.__argument_resolver = argument_resolver
 
-    def resolve(self, inspectedArguments: List[InspectedArgument], decoratorArgs: tuple):
-        decoratorArgsCount = len(decoratorArgs)
+    def resolve(self, inspected_arguments: List[InspectedArgument], decorator_args: tuple):
+        decorator_args_count = len(decorator_args)
 
-        if decoratorArgsCount > len(inspectedArguments):
-            raise Exception('There are more decorator arguments than function arguments')
+        if decorator_args_count > len(inspected_arguments):
+            raise Exception("There are more decorator arguments than function arguments")
 
-        return tuple(self.__argumentResolver.resolve(functionArgument, decoratorArgs[idx] if idx < decoratorArgsCount else None)
-                for idx, functionArgument in enumerate(inspectedArguments))
+        return tuple(
+            self.__argument_resolver.resolve(function_argument, decorator_args[idx] if idx < decorator_args_count else None)
+            for idx, function_argument in enumerate(inspected_arguments)
+        )

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-class StringableParameterInterface(ABC):
 
+class StringableParameterInterface(ABC):
     @abstractmethod
-    def toString(self) -> str:
+    def to_string(self) -> str:
         pass

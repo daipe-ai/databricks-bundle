@@ -4,53 +4,53 @@ from pyspark.conf import SparkConf
 from databricksbundle.spark.SparkSessionLazy import SparkSessionLazy
 from databricksbundle.spark.config.ConfiguratorInterface import ConfiguratorInterface
 
-class DatabricksConnectSessionFactory:
 
+class DatabricksConnectSessionFactory:
     def __init__(
         self,
         address: str,
         token: str,
-        clusterId: str,
-        orgId: Optional[str],
+        cluster_id: str,
+        org_id: Optional[str],
         port: int,
-        bindAddress: Optional[str],
+        bind_address: Optional[str],
         configurators: List[ConfiguratorInterface],
     ):
         self.__address = address
         self.__token = token
-        self.__clusterId = clusterId
-        self.__orgId = orgId
+        self.__cluster_id = cluster_id
+        self.__org_id = org_id
         self.__port = port
-        self.__bindAddress = bindAddress
+        self.__bind_address = bind_address
         self.__configurators = configurators
 
     def create(self) -> SparkSessionLazy:
         if not self.__address:
-            raise Exception('Databricks workspace address not set')
+            raise Exception("Databricks workspace address not set")
 
         if not self.__token:
-            raise Exception('Databricks workspace token not set')
+            raise Exception("Databricks workspace token not set")
 
-        if not self.__clusterId:
-            raise Exception('Databricks cluster not set')
+        if not self.__cluster_id:
+            raise Exception("Databricks cluster not set")
 
         if not self.__port:
-            raise Exception('Databricks connect port not set')
+            raise Exception("Databricks connect port not set")
 
-        def createLazy():
+        def create_lazy():
             # Databricks Connect configuration must be set before calling getOrCreate()
             conf = SparkConf()
-            conf.set('spark.databricks.service.address', self.__address)
-            conf.set('spark.databricks.service.token', self.__token)
-            conf.set('spark.databricks.service.clusterId', self.__clusterId)
+            conf.set("spark.databricks.service.address", self.__address)
+            conf.set("spark.databricks.service.token", self.__token)
+            conf.set("spark.databricks.service.clusterId", self.__cluster_id)
 
-            if self.__orgId is not None:
-                conf.set('spark.databricks.service.orgId', self.__orgId)
+            if self.__org_id is not None:
+                conf.set("spark.databricks.service.orgId", self.__org_id)
 
-            conf.set('spark.databricks.service.port', self.__port)
+            conf.set("spark.databricks.service.port", self.__port)
 
-            if self.__bindAddress is not None:
-                conf.set('spark.driver.bindAddress', self.__bindAddress)
+            if self.__bind_address is not None:
+                conf.set("spark.driver.bindAddress", self.__bind_address)
 
             spark = SparkSession.builder.config(conf=conf).getOrCreate()
 
@@ -59,4 +59,4 @@ class DatabricksConnectSessionFactory:
 
             return spark
 
-        return SparkSessionLazy(createLazy)
+        return SparkSessionLazy(create_lazy)

@@ -1,24 +1,30 @@
 import platform
-from databricksbundle.detector import isDatabricks
+from databricksbundle.detector import is_databricks
+
 
 class SparkSessionLazy:
+    def __init__(self, factory_callback: callable):
+        self._factory_callback = factory_callback
+        self._spark_session = None
 
-    def __init__(self, factoryCallback: callable):
-        self._factoryCallback = factoryCallback
-        self._sparkSession = None
+    def __getattr__(self, attribute_name):
+        if self._spark_session is None:
+            if not is_databricks():
+                from databricksbundle.spark.java_home_setter import set_java_home
+                from databricksbundle.spark.existing_spark_cleanup import (
+                    clean_existing_spark_config,
+                )
 
-    def __getattr__(self, attributeName):
-        if self._sparkSession is None:
-            if not isDatabricks():
-                from databricksbundle.spark.javaHomeSetter import setJavaHome # pylint: disable = import-outside-toplevel
-                from databricksbundle.spark.existingSparkCleanup import cleanExistingSparkConfig  # pylint: disable = import-outside-toplevel
-                setJavaHome()
-                cleanExistingSparkConfig()
+                set_java_home()
+                clean_existing_spark_config()
 
-                if platform.system() == 'Windows':
-                    from databricksbundle.spark.hadoopHomeSetter import setHadoopHomeEnvVar # pylint: disable = import-outside-toplevel
-                    setHadoopHomeEnvVar()
+                if platform.system() == "Windows":
+                    from databricksbundle.spark.hadoop_home_setter import (
+                        set_hadoop_home_env_var,
+                    )
 
-            self._sparkSession = self._factoryCallback()
+                    set_hadoop_home_env_var()
 
-        return getattr(self._sparkSession, attributeName)
+            self._spark_session = self._factory_callback()
+
+        return getattr(self._spark_session, attribute_name)

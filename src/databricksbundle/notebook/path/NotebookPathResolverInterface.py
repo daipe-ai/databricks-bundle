@@ -1,6 +1,6 @@
 from pathlib import Path
 
-class NotebookPathResolverInterface:
 
+class NotebookPathResolverInterface:
     def resolve(self) -> Path:
         pass

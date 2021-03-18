@@ -1,6 +1,6 @@
 ## Databricks Connect setup
 
-Databricks Connect is **NOT required when coding in notebooks**, however, you may find it useful when working with the [datalake-bundle and its console commands](https://github.com/bricksflow/datalake-bundle#console-commands-provided-by-this-bundle).
+Databricks Connect is **NOT required when coding in notebooks**, however, you may find it useful when working with the [datalake-bundle and its console commands](https://github.com/daipe-ai/datalake-bundle#console-commands-provided-by-this-bundle).
 
 In the *[rootpackage]/_config/bundles/databricksbundle.yaml* project bundle config, add the following configuration:
 

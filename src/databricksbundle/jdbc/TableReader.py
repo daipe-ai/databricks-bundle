@@ -2,24 +2,17 @@ from pyspark.sql.session import SparkSession
 from pyspark.sql.dataframe import DataFrame
 from databricksbundle.jdbc.OptionsFactoryInterface import OptionsFactoryInterface
 
-class TableReader:
 
+class TableReader:
     def __init__(
         self,
-        optionsFactory: OptionsFactoryInterface,
+        options_factory: OptionsFactoryInterface,
         spark: SparkSession,
     ):
-        self.__optionsFactory = optionsFactory
+        self.__options_factory = options_factory
         self.__spark = spark
 
-    def read(self, tableName: str, **kwargs) -> DataFrame:
-        options = {**self.__optionsFactory.create(), **kwargs}
+    def read(self, table_name: str, **kwargs) -> DataFrame:
+        options = {**self.__options_factory.create(), **kwargs}
 
-        return (
-            self.__spark
-                .read
-                .format('jdbc')
-                .options(**options)
-                .option('dbtable', tableName)
-                .load()
-        )
+        return self.__spark.read.format("jdbc").options(**options).option("dbtable", table_name).load()

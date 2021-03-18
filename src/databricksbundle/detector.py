@@ -1,7 +1,7 @@
 import os
 
 
-def isDatabricks():
+def is_databricks():
     """
     Check, if scripts are running on databricks cluster or locally.
 

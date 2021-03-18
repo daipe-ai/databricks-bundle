@@ -7,87 +7,84 @@ from injecta.service.class_.InspectedArgument import InspectedArgument
 from databricksbundle.notebook.function.ArgumentResolver import ArgumentResolver
 from databricksbundle.spark.ScriptSessionFactory import ScriptSessionFactory
 
+
 class ArgumentResolverTest(unittest.TestCase):
-
     def setUp(self):
-        logger = logging.getLogger('test_logger')
+        logger = logging.getLogger("test_logger")
 
-        self.__argumentResolver = ArgumentResolver(logger, self.__createDummyContainer())
+        self.__argument_resolver = ArgumentResolver(logger, self.__create_dummy_container())
 
-    def test_explicitIntArgument(self):
-        inspectedArgument = InspectedArgument('myVar', DType('builtins', 'int'))
+    def test_explicit_int_argument(self):
+        inspected_argument = InspectedArgument("my_var", DType("builtins", "int"))
 
-        resolvedArgument = self.__argumentResolver.resolve(inspectedArgument, 123)
+        resolved_argument = self.__argument_resolver.resolve(inspected_argument, 123)
 
-        self.assertEqual(123, resolvedArgument)
+        self.assertEqual(123, resolved_argument)
 
-    def test_plainStrArgument(self):
-        inspectedArgument = InspectedArgument('myVar', DType('builtins', 'str'))
+    def test_plain_str_argument(self):
+        inspected_argument = InspectedArgument("my_var", DType("builtins", "str"))
 
-        resolvedArgument = self.__argumentResolver.resolve(inspectedArgument, 'Hello')
+        resolved_argument = self.__argument_resolver.resolve(inspected_argument, "Hello")
 
-        self.assertEqual('Hello', resolvedArgument)
+        self.assertEqual("Hello", resolved_argument)
 
-    def test_strArgumentWithPlaceholders(self):
-        inspectedArgument = InspectedArgument('myVar', DType('builtins', 'str'), 'Some default hello', True)
+    def test_str_argument_with_placeholders(self):
+        inspected_argument = InspectedArgument("my_var", DType("builtins", "str"), "Some default hello", True)
 
-        resolvedArgument = self.__argumentResolver.resolve(inspectedArgument, 'Hello %name% %surname%')
+        resolved_argument = self.__argument_resolver.resolve(inspected_argument, "Hello %name% %surname%")
 
-        self.assertEqual('Hello Peter Novak', resolvedArgument)
+        self.assertEqual("Hello Peter Novak", resolved_argument)
 
-    def test_strArgumentService(self):
-        inspectedArgument = InspectedArgument('myVar', DType(ScriptSessionFactory.__module__, 'ScriptSessionFactory'))
+    def test_str_argument_service(self):
+        inspected_argument = InspectedArgument("my_var", DType(ScriptSessionFactory.__module__, "ScriptSessionFactory"))
 
-        resolvedSparkSessionFactory = self.__argumentResolver.resolve(inspectedArgument, f'@{ScriptSessionFactory.__module__}')
+        resolved_spark_session_factory = self.__argument_resolver.resolve(inspected_argument, f"@{ScriptSessionFactory.__module__}")
 
-        self.assertIsInstance(resolvedSparkSessionFactory, ScriptSessionFactory)
+        self.assertIsInstance(resolved_spark_session_factory, ScriptSessionFactory)
 
-    def test_argumentWithDefaultValue(self):
-        inspectedArgument = InspectedArgument('myVar', DType('builtins', 'str'), 'Peter', True)
+    def test_argument_with_default_value(self):
+        inspected_argument = InspectedArgument("my_var", DType("builtins", "str"), "Peter", True)
 
-        resolvedArgument = self.__argumentResolver.resolve(inspectedArgument, None)
+        resolved_argument = self.__argument_resolver.resolve(inspected_argument, None)
 
-        self.assertEqual('Peter', resolvedArgument)
+        self.assertEqual("Peter", resolved_argument)
 
-    def test_noValueNoTypehint(self):
-        inspectedArgument = InspectedArgument('myVar', DType('inspect', '_empty'))
+    def test_no_value_no_typehint(self):
+        inspected_argument = InspectedArgument("my_var", DType("inspect", "_empty"))
 
         with self.assertRaises(Exception) as error:
-            self.__argumentResolver.resolve(inspectedArgument, None)
+            self.__argument_resolver.resolve(inspected_argument, None)
 
-        self.assertEqual('Argument "myVar" must either have explicit value, default value or typehint defined', str(error.exception))
+        self.assertEqual('Argument "my_var" must either have explicit value, default value or typehint defined', str(error.exception))
 
     def test_logger(self):
-        inspectedArgument = InspectedArgument('myLogger', DType('logging', 'Logger'))
+        inspected_argument = InspectedArgument("my_logger", DType("logging", "Logger"))
 
-        resolvedLogger = self.__argumentResolver.resolve(inspectedArgument, None)
+        resolved_logger = self.__argument_resolver.resolve(inspected_argument, None)
 
-        self.assertIsInstance(resolvedLogger, logging.Logger)
-        self.assertEqual('test_logger', resolvedLogger.name)
+        self.assertIsInstance(resolved_logger, logging.Logger)
+        self.assertEqual("test_logger", resolved_logger.name)
 
-    def test_generalService(self):
-        inspectedArgument = InspectedArgument('sparkSessionFactory', DType(ScriptSessionFactory.__module__, 'ScriptSessionFactory'))
+    def test_general_service(self):
+        inspected_argument = InspectedArgument("spark_session_factory", DType(ScriptSessionFactory.__module__, "ScriptSessionFactory"))
 
-        resolvedSparkSessionFactory = self.__argumentResolver.resolve(inspectedArgument, None)
+        resolved_spark_session_factory = self.__argument_resolver.resolve(inspected_argument, None)
 
-        self.assertIsInstance(resolvedSparkSessionFactory, ScriptSessionFactory)
+        self.assertIsInstance(resolved_spark_session_factory, ScriptSessionFactory)
 
-    def __createDummyContainer(self):
+    def __create_dummy_container(self):
         class DummyContainer(ContainerInterface):
-
-            def getParameters(self) -> Box:
-                return Box({
-                    'name': 'Peter',
-                    'surname': 'Novak'
-                })
+            def get_parameters(self) -> Box:
+                return Box({"name": "Peter", "surname": "Novak"})
 
             def get(self, ident):
                 if ident == ScriptSessionFactory.__module__ or ident.__module__ == ScriptSessionFactory.__module__:
                     return ScriptSessionFactory()
 
-                raise Exception(f'Unexpected service {ident}')
+                raise Exception(f"Unexpected service {ident}")
 
         return DummyContainer()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

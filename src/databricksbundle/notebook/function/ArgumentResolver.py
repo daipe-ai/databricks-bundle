@@ -1,13 +1,13 @@
 from logging import Logger
 from injecta.container.ContainerInterface import ContainerInterface
 from injecta.dtype.AbstractType import AbstractType
-from injecta.dtype.classLoader import loadClass
-from injecta.parameter.allPlaceholdersReplacer import replaceAllPlaceholders, findAllPlaceholders
+from injecta.module import attribute_loader
+from injecta.parameter.all_placeholders_replacer import replace_all_placeholders, find_all_placeholders
 from injecta.service.class_.InspectedArgument import InspectedArgument
 from databricksbundle.notebook.decorator.StringableParameterInterface import StringableParameterInterface
 
-class ArgumentResolver:
 
+class ArgumentResolver:
     def __init__(
         self,
         logger: Logger,
@@ -16,60 +16,60 @@ class ArgumentResolver:
         self.__logger = logger
         self.__container = container
 
-    def resolve(self, functionArgument: InspectedArgument, decoratorArgument):
-        if decoratorArgument is not None:
-            return self.__resolveExplicitValue(functionArgument, decoratorArgument)
+    def resolve(self, function_argument: InspectedArgument, decorator_argument):
+        if decorator_argument is not None:
+            return self.__resolve_explicit_value(function_argument, decorator_argument)
 
-        argumentType = functionArgument.dtype
+        argument_type = function_argument.dtype
 
-        if functionArgument.hasDefaultValue():
-            return self.__checkType(functionArgument.defaultValue, argumentType, functionArgument.name)
+        if function_argument.has_default_value():
+            return self.__check_type(function_argument.default_value, argument_type, function_argument.name)
 
-        if not argumentType.isDefined():
-            raise Exception(f'Argument "{functionArgument.name}" must either have explicit value, default value or typehint defined')
+        if not argument_type.is_defined():
+            raise Exception(f'Argument "{function_argument.name}" must either have explicit value, default value or typehint defined')
 
-        if str(argumentType) == 'logging.Logger':
+        if str(argument_type) == "logging.Logger":
             return self.__logger
 
-        class_ = loadClass(argumentType.moduleName, argumentType.className)  # pylint: disable = invalid-name
+        class_ = attribute_loader.load(argument_type.module_name, argument_type.class_name)
 
         return self.__container.get(class_)
 
-    def __resolveExplicitValue(self, functionArgument: InspectedArgument, decoratorArgument):
-        argumentType = functionArgument.dtype
+    def __resolve_explicit_value(self, function_argument: InspectedArgument, decorator_argument):
+        argument_type = function_argument.dtype
 
-        if isinstance(decoratorArgument, str):
-            output = self.__resolveStringArgument(decoratorArgument)
-            return self.__checkType(output, argumentType, functionArgument.name)
-        if isinstance(decoratorArgument, StringableParameterInterface):
-            output = self.__resolveStringArgument(decoratorArgument.toString())
-            return self.__checkType(output, argumentType, functionArgument.name)
-        # isinstance(decoratorArgument, AbstractDecorator) does not work probably due to some cyclic import
-        if hasattr(decoratorArgument, '_isDecorator') and decoratorArgument._isDecorator is True: # pylint: disable = protected-access
-            return decoratorArgument.result
+        if isinstance(decorator_argument, str):
+            output = self.__resolve_string_argument(decorator_argument)
+            return self.__check_type(output, argument_type, function_argument.name)
+        if isinstance(decorator_argument, StringableParameterInterface):
+            output = self.__resolve_string_argument(decorator_argument.to_string())
+            return self.__check_type(output, argument_type, function_argument.name)
+        # isinstance(decorator_argument, AbstractDecorator) does not work probably due to some cyclic import
+        if hasattr(decorator_argument, "_is_decorator") and decorator_argument._is_decorator is True:
+            return decorator_argument.result
 
-        return self.__checkType(decoratorArgument, argumentType, functionArgument.name)
+        return self.__check_type(decorator_argument, argument_type, function_argument.name)
 
-    def __resolveStringArgument(self, decoratorArgument):
-        if decoratorArgument[0:1] == '@':
-            return self.__container.get(decoratorArgument[1:])
+    def __resolve_string_argument(self, decorator_argument):
+        if decorator_argument[0:1] == "@":
+            return self.__container.get(decorator_argument[1:])
 
-        matches = findAllPlaceholders(decoratorArgument)
+        matches = find_all_placeholders(decorator_argument)
 
         if not matches:
-            return decoratorArgument
+            return decorator_argument
 
-        parameters = self.__container.getParameters()
+        parameters = self.__container.get_parameters()
 
-        return replaceAllPlaceholders(decoratorArgument, matches, parameters, decoratorArgument)
+        return replace_all_placeholders(decorator_argument, matches, parameters, decorator_argument)
 
-    def __checkType(self, value, expectedType: AbstractType, argumentName: str):
-        valueTypeStr = value.__class__.__module__ + '.' + value.__class__.__name__
-        expectedTypeStr = str(expectedType)
+    def __check_type(self, value, expected_type: AbstractType, argument_name: str):
+        value_type_str = value.__class__.__module__ + "." + value.__class__.__name__
+        expected_type_str = str(expected_type)
 
-        if expectedType.isDefined() and valueTypeStr != expectedTypeStr:
-            expectedTypeStr = expectedTypeStr.replace('builtins.', '')
-            valueTypeStr = valueTypeStr.replace('builtins.', '')
-            raise Exception(f'Argument "{argumentName}" is defined as {expectedTypeStr}, {valueTypeStr} given instead')
+        if expected_type.is_defined() and value_type_str != expected_type_str:
+            expected_type_str = expected_type_str.replace("builtins.", "")
+            value_type_str = value_type_str.replace("builtins.", "")
+            raise Exception(f'Argument "{argument_name}" is defined as {expected_type_str}, {value_type_str} given instead')
 
         return value

@@ -19,11 +19,13 @@ jobs:
         run: |
           export SHELL=$SHELL # for python to be able to access the bash version
           ./env-init.sh -y --verbose
-      - name: pylint
+      - name: linting
         run: |
           eval "$(conda shell.bash hook)"
           conda activate $PWD/.venv
-          ./pylint.sh
+          source ~/.poetry/env
+          poe black-check
+          poe flake8
       - name: crlf
         run: |
           eval "$(conda shell.bash hook)"

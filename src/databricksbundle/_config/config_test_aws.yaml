@@ -1,7 +1,7 @@
 parameters:
   databricksbundle:
-    databricksConnect:
+    databricks_connect:
       connection:
         address: 'https://dbc-123.cloud.databricks.com'
         token: 'abcd123456'
-        clusterId: '0416-084917-doles835'
+        cluster_id: '0416-084917-doles835'

@@ -1,11 +1,11 @@
 import logging
 
 # inspired by https://stackoverflow.com/questions/40110540/jupyter-magic-to-handle-notebook-exceptions
-def setNotebookErrorHandler():
-    import IPython  # pylint: disable = import-error, import-outside-toplevel
+def set_notebook_error_handler():  # noqa: 5302
+    import IPython
 
-    def custom_exc(shell, etype, evalue, tb, tb_offset=None): # pylint: disable = invalid-name
-        logging.error('Notebook exception', exc_info=True)
+    def custom_exc(shell, etype, evalue, tb, tb_offset=None):
+        logging.error("Notebook exception", exc_info=True)
 
         # still show the error within the notebook, don't just swallow it
         shell.showtraceback((etype, evalue, tb), tb_offset=tb_offset)
