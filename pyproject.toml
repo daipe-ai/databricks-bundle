@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "databricks-bundle"
 version = "0.8.0"
-description = "Databricks bundle for the Daipe framework"
+description = "Databricks runtime support for the Daipe framework"
 readme = "README.md"
 repository = "https://github.com/daipe-ai/databricks-bundle"
 
@@ -30,6 +30,8 @@ pyfony-core = "0.8.*"
 pyfony-bundles = "0.4.*"
 injecta = "0.10.*"
 logger-bundle = "0.7.*"
+daipe-core = "^0.8.0b1"
+pyspark-bundle = "^0.8.0b1"
 
 [tool.poetry.dev-dependencies]
 databricks-connect = ">=7.3.7,<8.0.0"
@@ -42,6 +44,9 @@ poethepoet = "^0.10.0"
 
 [tool.poetry.plugins."pyfony.bundle"]
 create = "databricksbundle.DatabricksBundle:DatabricksBundle.autodetect"
+
+[tool.poetry.plugins."daipe"]
+bootstrap_config_reader = "databricksbundle.bootstrap.package_config_reader:read"
 
 [pyfony.bootstrap]
 container_init = "pyfonycore.container.container_init:init_with_current_bundle"
