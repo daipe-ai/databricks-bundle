@@ -3,15 +3,11 @@ parameters:
     enable_notebook_error_handler: True
 
 services:
-  databricksbundle.notebook.function.ArgumentResolver:
-    arguments:
-      - '@databricksbundle.logger'
-
-  databricksbundle.notebook.function.ArgumentsResolver:
-
   databricksbundle.notebook.logger.NotebookLoggerFactory:
     arguments:
       - '@databricksbundle.notebook.path_resolver'
+    tags:
+      - {name: 'daipe.logger.factory', alias: 'databricks'}
 
   databricksbundle.test.DatabricksConnectTestCommand:
     arguments:
@@ -19,3 +15,10 @@ services:
     tags:
       - 'console.command'
 
+  databricksbundle.notebook.DataFrameDisplay:
+    tags:
+      - {name: 'pysparkbundle.dataframe.show_method', alias: "databricks_display"}
+
+  databricksbundle.filesystem.DbUtilsFilesystem:
+    tags:
+      - {name: 'pysparkbundle.filesystem', alias: 'dbutils.fs'}

@@ -1,11 +1,9 @@
 import re
 from typing import List
 from box import Box
-from databricksbundle.bootstrap import bootstrap_config_reader
 from consolebundle.detector import is_running_in_console
 from injecta.container.ContainerInterface import ContainerInterface
 from injecta.dtype.DType import DType
-from injecta.package.path_resolver import resolve_path
 from injecta.service.Service import Service
 from injecta.service.ServiceAlias import ServiceAlias
 from injecta.service.argument.ServiceArgument import ServiceArgument
@@ -38,21 +36,6 @@ class DatabricksBundle(Bundle):
     def get_config_files(self):
         return ["config.yaml", "databricks/" + self.__databricks_config]
 
-    def modify_raw_config(self, raw_config: dict) -> dict:
-        bootstrap_config = bootstrap_config_reader.read()
-
-        if "daipe" in raw_config["parameters"]:
-            raise Exception("parameters.daipe must not be explicitly defined")
-
-        raw_config["parameters"]["daipe"] = {
-            "root_module": {
-                "name": bootstrap_config.root_module_name,
-                "path": resolve_path(bootstrap_config.root_module_name).replace("\\", "/"),
-            }
-        }
-
-        return raw_config
-
     def modify_services(self, services: List[Service], aliases: List[ServiceAlias], parameters: Box):
         if is_running_in_console():
             aliases.append(ServiceAlias("databricksbundle.logger", "consolebundle.logger"))
@@ -63,6 +46,22 @@ class DatabricksBundle(Bundle):
             services.append(service)
 
         return services, aliases
+
+    def modify_parameters(self, parameters: Box) -> Box:
+        if parameters.daipecore.logger.type == "default":
+            parameters.daipecore.logger.type = "databricks"
+
+        if parameters.pysparkbundle.dataframe.show_method == "dataframe_show":
+            parameters.pysparkbundle.dataframe.show_method = "databricks_display"
+
+        if parameters.pysparkbundle.filesystem is not None:
+            raise Exception(
+                "pysparkbundle.filesystem parameter must not be explicitly set as dbutils.fs must be used for Databricks-based projects"
+            )
+
+        parameters.pysparkbundle.filesystem = "dbutils.fs"
+
+        return parameters
 
     def boot(self, container: ContainerInterface):
         parameters = container.get_parameters()

@@ -92,6 +92,19 @@ pyfony-core = ">=0.8.0,<0.9.0"
 python-dotenv = ">=0.13.0,<1.0.0"
 
 [[package]]
+name = "daipe-core"
+version = "0.8.0a9"
+description = "Daipe framework core"
+category = "main"
+optional = false
+python-versions = ">=3.7,<4.0"
+
+[package.dependencies]
+injecta = ">=0.10.0,<0.11.0"
+logger-bundle = ">=0.7.0,<0.8.0"
+pyfony-bundles = ">=0.4.0,<0.5.0"
+
+[[package]]
 name = "databricks-connect"
 version = "7.3.7"
 description = "Databricks Connect Client"
@@ -337,6 +350,19 @@ optional = false
 python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
+name = "pyspark-bundle"
+version = "0.1.0a9"
+description = "PySpark bundle for the Daipe Framework"
+category = "main"
+optional = false
+python-versions = ">=3.7,<4.0"
+
+[package.dependencies]
+daipe-core = ">=0.8.0a7,<0.9.0"
+injecta = ">=0.10.0,<0.11.0"
+pyfony-bundles = ">=0.4.0,<0.5.0"
+
+[[package]]
 name = "pytest"
 version = "5.2.4"
 description = "pytest: simple powerful testing with Python"
@@ -459,7 +485,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "a90c06226a4d78d2e132e46960867d4bd3427608e3542542fc90e5285933c3ca"
+content-hash = "498b61b12bb9048198d5e2230278970b2dac42e26bb1a7f9dd61917306eb5ec2"
 
 [metadata.files]
 appdirs = [
@@ -491,6 +517,10 @@ colorlog = [
 ]
 console-bundle = [
     {file = "console_bundle-0.4.0-py3-none-any.whl", hash = "sha256:6fb19484d5ebf6904e60646fb253558c3eebb6335d283088ddb7054f83505921"},
+]
+daipe-core = [
+    {file = "daipe-core-0.8.0a9.tar.gz", hash = "sha256:68d3818ed1adacf7bdd98d3e9cfb8ad62304c3b926c16fe509af655b83e05638"},
+    {file = "daipe_core-0.8.0a9-py3-none-any.whl", hash = "sha256:c76e76a9439965752bbd3e14ecdb7298050f04007e531eb6d8bdc573f6bda386"},
 ]
 databricks-connect = [
     {file = "databricks-connect-7.3.7.tar.gz", hash = "sha256:35ead50a0550e65a7d6fd78e2c8e54095b53514fba85180768a2dbcdd3f2cf0b"},
@@ -578,6 +608,10 @@ pyfony-core = [
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
     {file = "pyparsing-2.4.7.tar.gz", hash = "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1"},
+]
+pyspark-bundle = [
+    {file = "pyspark-bundle-0.1.0a9.tar.gz", hash = "sha256:3ad2759b4e8b3ca6c36ccfdd97fd72edd5b20c9ad9a80630a891424da83ff5cb"},
+    {file = "pyspark_bundle-0.1.0a9-py3-none-any.whl", hash = "sha256:c7654ae53b992f2ef0a2770f923f67c19651f12ee2a5f0c3cd70a7491a2f0d11"},
 ]
 pytest = [
     {file = "pytest-5.2.4-py3-none-any.whl", hash = "sha256:8e256fe71eb74e14a4d20a5987bb5e1488f0511ee800680aaedc62b9358714e8"},
