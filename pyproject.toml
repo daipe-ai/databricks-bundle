@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "databricks-bundle"
-version = "0.9.0b1"
+version = "0.9.0b2"
 description = "Databricks runtime support for the Daipe framework"
 readme = "README.md"
 repository = "https://github.com/daipe-ai/databricks-bundle"
