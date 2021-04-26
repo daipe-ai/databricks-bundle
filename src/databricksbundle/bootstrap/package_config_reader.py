@@ -8,6 +8,8 @@ if sys.version_info >= (3, 8):
 else:
     import importlib_metadata
 
+from importlib_metadata import files
+
 
 def read() -> Config:
     entry_points = importlib_metadata.entry_points().get("pyfony.bootstrap", ())
@@ -15,7 +17,11 @@ def read() -> Config:
     if not entry_points:
         raise Exception("pyfony.bootstrap entry points is missing in the master package, try rebuilding the package")
 
-    raw_config = json.loads(tuple(entry_points)[0].dist.read_text("bootstrap_config.json"))
+    package_name = entry_points[0].value
+
+    util = files(package_name)[0]
+
+    raw_config = json.loads(util.dist.read_text("bootstrap_config.json"))
 
     return pyfony_config_factory.create(raw_config, "pyfony.bootstrap entry point")
 
