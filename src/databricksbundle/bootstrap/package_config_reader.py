@@ -23,11 +23,13 @@ def read() -> Config:
     if not entry_points:
         raise Exception("pyfony.bootstrap entry points is missing in the master package, try rebuilding the package")
 
-    package_name = entry_points[0].value
+    if hasattr(tuple(entry_points)[0], "dist"):
+        dist_path = tuple(entry_points)[0].dist
+    else:
+        package_name = entry_points.value
+        dist_path = files(package_name)[0].dist
 
-    util = files(package_name)[0]
-
-    raw_config = json.loads(util.dist.read_text("bootstrap_config.json"))
+    raw_config = json.loads(dist_path.read_text("bootstrap_config.json"))
 
     return pyfony_config_factory.create(raw_config, "pyfony.bootstrap entry point")
 
