@@ -30,8 +30,8 @@ pyfony-core = "0.8.*"
 pyfony-bundles = "0.4.*"
 injecta = "0.10.*"
 logger-bundle = "0.7.*"
-daipe-core = "^0.8.0b1"
 pyspark-bundle = "^0.8.0b1"
+daipe-core = "^0.8.0b3"
 
 [tool.poetry.dev-dependencies]
 databricks-connect = ">=7.3.7,<8.0.0"
