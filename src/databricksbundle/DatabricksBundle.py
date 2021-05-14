@@ -1,6 +1,7 @@
 import re
 from typing import List
 from box import Box
+from pyspark.sql.session import SparkSession
 from consolebundle.detector import is_running_in_console
 from injecta.container.ContainerInterface import ContainerInterface
 from injecta.dtype.DType import DType
@@ -73,3 +74,11 @@ class DatabricksBundle(Bundle):
             and not re.match("^/Users/", get_notebook_path())
         ):
             set_notebook_error_handler()
+
+            multiple_results_enabled = "spark.databricks.workspace.multipleResults.enabled"
+            logger = container.get("databricksbundle.logger")
+            spark = container.get(SparkSession)
+
+            if spark.conf.get(multiple_results_enabled) == "false":
+                logger.warning(f"{multiple_results_enabled} is set to false!")
+                logger.warning("Error messages will not show properly!")
