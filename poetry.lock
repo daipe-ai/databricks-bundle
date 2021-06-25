@@ -93,13 +93,14 @@ python-dotenv = ">=0.13.0,<1.0.0"
 
 [[package]]
 name = "daipe-core"
-version = "1.0.0"
+version = "1.1.0"
 description = "Daipe framework core"
 category = "main"
 optional = false
 python-versions = ">=3.7,<4.0"
 
 [package.dependencies]
+console-bundle = ">=0.4.0"
 injecta = ">=0.10.0,<0.11.0"
 logger-bundle = ">=0.7.0,<0.8.0"
 pyfony-bundles = ">=0.4.0,<0.5.0"
@@ -485,7 +486,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "e4c11c101a86515bc87e7ed19a73bf6a023e11e2671e12f0b3cb6e67a415678e"
+content-hash = "ce8cbb717813168a615ee46f2cb40b61fcc76bfe66f0f5daa01369549251f721"
 
 [metadata.files]
 appdirs = [
@@ -519,7 +520,7 @@ console-bundle = [
     {file = "console_bundle-0.4.0-py3-none-any.whl", hash = "sha256:6fb19484d5ebf6904e60646fb253558c3eebb6335d283088ddb7054f83505921"},
 ]
 daipe-core = [
-    {file = "daipe_core-1.0.0-py3-none-any.whl", hash = "sha256:157cdf48add2906584770f898b7473732e730e542d240e68abbde75a1ce1ba3a"},
+    {file = "daipe_core-1.1.0-py3-none-any.whl", hash = "sha256:d3bb3ea459bd9b2a5257fc9265f25306ee72f95ef04f1898edaf4290f917e844"},
 ]
 databricks-connect = [
     {file = "databricks-connect-7.3.7.tar.gz", hash = "sha256:35ead50a0550e65a7d6fd78e2c8e54095b53514fba85180768a2dbcdd3f2cf0b"},

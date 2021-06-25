@@ -22,3 +22,7 @@ services:
   databricksbundle.filesystem.DbUtilsFilesystem:
     tags:
       - {name: 'pysparkbundle.filesystem', alias: 'dbutils.fs'}
+
+  databricksbundle.widgets.DatabricksWidgets:
+    tags:
+      - "widgets.factory"
