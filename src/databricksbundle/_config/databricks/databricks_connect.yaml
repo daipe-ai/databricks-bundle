@@ -26,12 +26,7 @@ services:
 
   databricksbundle.spark.DatabricksConnectSessionFactory:
     arguments:
-      - '%databricksbundle.databricks_connect.connection.address%'
-      - '%databricksbundle.databricks_connect.connection.token%'
-      - '%databricksbundle.databricks_connect.connection.cluster_id%'
-      - '%databricksbundle.databricks_connect.connection.org_id%'
-      - '%databricksbundle.databricks_connect.connection.port%'
-      - '%databricksbundle.databricks_connect.connection.driver_bind_address%'
+      - '%databricksbundle.databricks_connect.connection%'
       - !tagged databricks_connect.configurator
 
   pyspark.dbutils.DBUtils:
