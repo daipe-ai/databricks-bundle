@@ -24,6 +24,12 @@ class DatabricksWidgets(Widgets):
         self.__multiselect_fields.append(name)
         self.__dbutils.widgets.multiselect(name, default_values, choices, label)
 
+    def remove(self, name: str):
+        self.__dbutils.widgets.remove(name)
+
+    def remove_all(self):
+        self.__dbutils.widgets.removeAll()
+
     def get_value(self, name: str):
         value = self.__dbutils.widgets.get(name)
 
