@@ -25,7 +25,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.7"
-console-bundle = "0.4.*"
+console-bundle = "^0.5"
 pyfony-core = "0.8.*"
 pyfony-bundles = "0.4.*"
 injecta = "0.10.*"
