@@ -73,10 +73,12 @@ class DatabricksBundle(Bundle):
             and parameters.databricksbundle.enable_notebook_error_handler is True
             and not re.match("^/Users/", get_notebook_path())
         ):
-            set_notebook_error_handler()
+            logger = container.get("databricksbundle.logger")
+
+            set_notebook_error_handler(logger)
 
             multiple_results_enabled = "spark.databricks.workspace.multipleResults.enabled"
-            logger = container.get("databricksbundle.logger")
+
             spark = container.get(SparkSession)
 
             if spark.conf.get(multiple_results_enabled) == "false":
