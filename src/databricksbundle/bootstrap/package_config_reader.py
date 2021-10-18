@@ -2,7 +2,7 @@ import json
 import sys
 from pyfonycore.bootstrap.config import config_factory as pyfony_config_factory
 from pyfonycore.bootstrap.config.Config import Config
-from databricksbundle.detector import is_databricks
+from databricksbundle.detector import is_databricks, is_databricks_repo
 
 if sys.version_info >= (3, 8):
     from importlib import metadata as importlib_metadata
@@ -13,7 +13,7 @@ from importlib_metadata import files
 
 
 def read() -> Config:
-    if not is_databricks():
+    if not is_databricks() or is_databricks_repo():
         from daipecore.bootstrap import config_reader
 
         return config_reader.read()
