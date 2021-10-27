@@ -16,3 +16,9 @@ def get_notebook_path():
 
 def is_notebook_environment():
     return sys.argv and sys.argv[0][-15:] == "/PythonShell.py"
+
+
+def ipython_display(obj):
+    import IPython
+
+    IPython.get_ipython().user_ns["display"](obj)
