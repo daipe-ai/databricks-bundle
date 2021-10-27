@@ -19,6 +19,10 @@ services:
     tags:
       - {name: 'pysparkbundle.dataframe.show_method', alias: "databricks_display"}
 
+  databricksbundle.notebook.PandasDataFrameDisplay:
+    tags:
+      - {name: 'daipecore.pandas.dataframe.show_method', alias: "databricks_display"}
+
   databricksbundle.filesystem.DbUtilsFilesystem:
     tags:
       - {name: 'pysparkbundle.filesystem', alias: 'dbutils.fs'}
