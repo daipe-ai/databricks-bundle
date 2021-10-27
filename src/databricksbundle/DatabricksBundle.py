@@ -54,6 +54,7 @@ class DatabricksBundle(Bundle):
 
         if is_databricks():
             parameters.pysparkbundle.dataframe.show_method = "databricks_display"
+            parameters.daipecore.pandas.dataframe.show_method = "databricks_display"
 
         if parameters.pysparkbundle.filesystem is not None:
             raise Exception(
