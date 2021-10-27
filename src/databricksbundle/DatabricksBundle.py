@@ -52,7 +52,7 @@ class DatabricksBundle(Bundle):
         if parameters.daipecore.logger.type == "default":
             parameters.daipecore.logger.type = "databricks"
 
-        if parameters.pysparkbundle.dataframe.show_method == "dataframe_show":
+        if is_databricks():
             parameters.pysparkbundle.dataframe.show_method = "databricks_display"
 
         if parameters.pysparkbundle.filesystem is not None:
