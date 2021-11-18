@@ -14,7 +14,7 @@ from importlib_metadata import files
 
 def read() -> Config:
     if not is_databricks() or is_databricks_repo():
-        from daipecore.bootstrap import config_reader
+        from pyfonycore.bootstrap.config import config_reader
 
         return config_reader.read()
 
