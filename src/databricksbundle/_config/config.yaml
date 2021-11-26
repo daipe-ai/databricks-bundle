@@ -1,6 +1,7 @@
 parameters:
   databricksbundle:
     enable_notebook_error_handler: True
+    storages:
 
 services:
   databricksbundle.notebook.logger.NotebookLoggerFactory:
@@ -30,3 +31,14 @@ services:
   databricksbundle.widgets.DatabricksWidgets:
     tags:
       - "widgets.factory"
+
+  databricksbundle.storage.StorageConfigurator:
+    arguments:
+      - '%databricksbundle.storages%'
+      - !tagged 'databricks.storage.configurator'
+    tags:
+      - databricks.configurator
+
+  databricksbundle.storage.adapter.AzureGen2Configurator:
+    tags:
+      - 'databricks.storage.configurator'

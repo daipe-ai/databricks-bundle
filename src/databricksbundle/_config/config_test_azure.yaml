@@ -6,3 +6,30 @@ parameters:
         token: 'abcd123456'
         cluster_id: '0416-084917-doles835'
         org_id: 123456789
+
+    storages:
+      dev:
+        type: testing
+        tenant_id: "123456"
+        storage_name: "aaa"
+        client_id:
+          secret_scope: some_client_id_scope1
+          secret_key: some_client_id_key1
+        client_secret:
+          secret_scope: some_client_secret_scope1
+          secret_key: some_client_secret_key1
+      prod:
+        type: testing
+        tenant_id: "987654"
+        storage_name: "bbb"
+        client_id:
+          secret_scope: some_client_id_scope2
+          secret_key: some_client_id_key2
+        client_secret:
+          secret_scope: some_client_secret_scope2
+          secret_key: some_client_secret_key2
+
+services:
+  databricksbundle.storage.testing.TestingConfigurator:
+    tags:
+      - 'databricks.storage.configurator'
