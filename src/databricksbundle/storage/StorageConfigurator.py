@@ -10,7 +10,7 @@ class StorageConfigurator(ConfiguratorInterface):
     __storage_configurators: Dict[str, StorageConfiguratorInterface]
 
     def __init__(self, storages: Box, storage_configurators: List[StorageConfiguratorInterface]):
-        self.__storages = storages
+        self.__storages = storages or []
         self.__storage_configurators = {
             storage_configurator.get_type(): storage_configurator for storage_configurator in storage_configurators
         }
