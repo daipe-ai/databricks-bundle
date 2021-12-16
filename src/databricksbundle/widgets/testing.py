@@ -97,7 +97,7 @@ class Multiselect(TestingWidget):
         return self.__label
 
     def get_default(self):
-        return ",".join(self.__default_values)
+        return self.default_values
 
     def get_value(self, raw_value):
         diff = set(raw_value) - set(self.__choices)
@@ -113,6 +113,11 @@ class Multiselect(TestingWidget):
 class TestingDbUtilsWidgets:
     __fields = []
     _raw_values = dict()
+
+    @classmethod
+    def get_widget(cls, name):
+
+        return next(field for field in cls.__fields if field.name == name)
 
     @classmethod
     def set_raw_values(cls, values: dict):
