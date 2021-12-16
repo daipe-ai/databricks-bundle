@@ -15,6 +15,7 @@ class DatabricksWidgetsTest(unittest.TestCase):
 
     def test_text(self):
         self.__widgets.add_text("mytext")
+
         set_input(mytext="January, February")
         self.assertEqual("January, February", self.__widgets.get_value("mytext"))
 
@@ -47,6 +48,22 @@ class DatabricksWidgetsTest(unittest.TestCase):
         self.__widgets.add_text("mytext", "my_default_value")
         set_input(mytext="January, February")
         self.assertEqual("January, February", self.__widgets.get_value("mytext"))
+
+    def test_text_wrong_name(self):
+        with self.assertRaises(Exception) as error:
+            self.__widgets.add_text("mytexť%")
+
+        self.assertEqual(
+            "The name you provided is incorrect, please provide name containing only alpha-numeric letters and _", str(error.exception)
+        )
+
+    def test_text_label_generation(self):
+        self.__widgets.add_text("mytext")
+        self.__widgets.add_text("yourtext")
+
+        self.assertEqual("01. mytext", TestingDbUtilsWidgets.get_widget("mytext").label)
+
+        self.assertEqual("02. yourtext", TestingDbUtilsWidgets.get_widget("yourtext").label)
 
     # widgets.add_select() -----------------------
 
@@ -86,25 +103,42 @@ class DatabricksWidgetsTest(unittest.TestCase):
 
         self.assertEqual("argument --myselect: invalid choice: 'my_invalid_value' (choose from 'month', 'year')", str(error.exception))
 
+    def test_select_wrong_name(self):
+        with self.assertRaises(Exception) as error:
+            self.__widgets.add_select("myselect%", ["month", "year"], "month")
+
+        self.assertEqual(
+            "The name you provided is incorrect, please provide name containing only alpha-numeric letters and _", str(error.exception)
+        )
+
+    def test_select_label_generation(self):
+        self.__widgets.add_select("myselect", ["month", "year"], "month")
+        self.__widgets.add_select("yourselect", ["month", "year"], "month")
+
+        self.assertEqual("01. myselect", TestingDbUtilsWidgets.get_widget("myselect").label)
+
+        self.assertEqual("02. yourselect", TestingDbUtilsWidgets.get_widget("yourselect").label)
+
     # widgets.add_multiselect() -----------------------
 
     def test_multiselect_defaults(self):
-        self.__widgets.add_multiselect("mymulti", ["January", "February", "March"], ["January", "February"])
+        self.__widgets.add_multiselect("mymulti", ["January", "February", "March"], ["January"])
         set_input()
-        self.assertEqual(["January", "February"], self.__widgets.get_value("mymulti"))
+        self.assertEqual(["January"], self.__widgets.get_value("mymulti"))
 
     def test_multiselect_defaults_overridden(self):
-        self.__widgets.add_multiselect("mymulti", ["January", "February", "March"], ["January", "February"])
+        self.__widgets.add_multiselect("mymulti", ["January", "February", "March"], ["January"])
         set_input(mymulti=["January", "March"])
         self.assertEqual(["January", "March"], self.__widgets.get_value("mymulti"))
 
     def test_multiselect_defaults_empty(self):
-        self.__widgets.add_multiselect("mymulti", ["January", "February", "March"], [])
-        set_input(mymulti=["January"])
-        self.assertEqual(["January"], self.__widgets.get_value("mymulti"))
+        with self.assertRaises(Exception) as error:
+            self.__widgets.add_multiselect("mymulti", ["January", "February", "March"], [])
+
+        self.assertEqual("Default values must contain exactly 1 element", str(error.exception))
 
     def test_multiselect_multi_values_one_invalid(self):
-        self.__widgets.add_multiselect("mymulti", ["January", "February", "March"], [])
+        self.__widgets.add_multiselect("mymulti", ["January", "February", "March"], ["March"])
         set_input(mymulti=["January", "April"])
 
         with self.assertRaises(Exception) as error:
@@ -113,7 +147,7 @@ class DatabricksWidgetsTest(unittest.TestCase):
         self.assertEqual("argument --mymulti: invalid choice: 'April' (choose from 'January', 'February', 'March')", str(error.exception))
 
     def test_multiselect_single_value_invalid(self):
-        self.__widgets.add_multiselect("mymulti", ["January", "February", "March"], [])
+        self.__widgets.add_multiselect("mymulti", ["January", "February", "March"], ["April"])
         set_input(mymulti=["April"])
 
         with self.assertRaises(Exception) as error:
@@ -123,6 +157,23 @@ class DatabricksWidgetsTest(unittest.TestCase):
             "argument --mymulti: invalid choice: 'April' (choose from 'January', 'February', 'March')",
             str(error.exception),
         )
+
+    def test_multiselect_label_wrong_name(self):
+        with self.assertRaises(Exception) as error:
+            self.__widgets.add_multiselect("mymulti~", ["January", "February", "March"], ["January"])
+
+        self.assertEqual(
+            "The name you provided is incorrect, please provide name containing only alpha-numeric letters and _",
+            str(error.exception),
+        )
+
+    def test_multiselect_label_generation(self):
+        self.__widgets.add_multiselect("mymultiselect", ["January", "February", "March"], ["April"])
+        self.__widgets.add_multiselect("yourmultiselect", ["January", "February", "March"], ["April"])
+
+        self.assertEqual("01. mymultiselect", TestingDbUtilsWidgets.get_widget("mymultiselect").label)
+
+        self.assertEqual("02. yourmultiselect", TestingDbUtilsWidgets.get_widget("yourmultiselect").label)
 
 
 if __name__ == "__main__":
