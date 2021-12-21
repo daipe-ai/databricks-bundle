@@ -108,11 +108,11 @@ pyfony-bundles = ">=0.4.0,<0.5.0"
 
 [[package]]
 name = "databricks-connect"
-version = "7.3.7"
+version = "9.1.2"
 description = "Databricks Connect Client"
 category = "dev"
 optional = false
-python-versions = "*"
+python-versions = ">=3.6"
 
 [package.dependencies]
 py4j = "0.10.9"
@@ -121,8 +121,11 @@ six = "*"
 [package.extras]
 ml = ["numpy (>=1.7)"]
 mllib = ["numpy (>=1.7)"]
-sql = ["pandas (>=0.23.2)", "pyarrow (>=0.15.1)"]
+sql = ["pandas (>=0.23.2)", "pyarrow (>=1.0.0)"]
 
+[package.source]
+type = "url"
+url = "https://daipe-packages.s3.eu-central-1.amazonaws.com/databricks-connect-9.1.2.tar.gz"
 [[package]]
 name = "flake8"
 version = "3.9.0"
@@ -530,7 +533,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "d22e2a182a11a83cd6ca6c3bae01b17416fa00566ee01683a204702d71232bed"
+content-hash = "bd84370d23ad7b3b33b518154e397eab943d63c8d2bcef685aa1bc64445183e3"
 
 [metadata.files]
 appdirs = [
@@ -566,9 +569,7 @@ console-bundle = [
 daipe-core = [
     {file = "daipe_core-1.2.0-py3-none-any.whl", hash = "sha256:2f0048fc19f7cb21b849076b8f1ffb1ebbd6dacf15ec23954cd7d422b5012f30"},
 ]
-databricks-connect = [
-    {file = "databricks-connect-7.3.7.tar.gz", hash = "sha256:35ead50a0550e65a7d6fd78e2c8e54095b53514fba85180768a2dbcdd3f2cf0b"},
-]
+databricks-connect = []
 flake8 = [
     {file = "flake8-3.9.0-py2.py3-none-any.whl", hash = "sha256:12d05ab02614b6aee8df7c36b97d1a3b2372761222b19b58621355e82acddcff"},
     {file = "flake8-3.9.0.tar.gz", hash = "sha256:78873e372b12b093da7b5e5ed302e8ad9e988b38b063b61ad937f26ca58fc5f0"},
