@@ -34,7 +34,7 @@ pyspark-bundle = "^1.2"
 daipe-core = "^1.2"
 
 [tool.poetry.dev-dependencies]
-databricks-connect = ">=7.3.7,<8.0.0"
+databricks-connect = { url = "https://daipe-packages.s3.eu-central-1.amazonaws.com/databricks-connect-9.1.2.tar.gz" }
 pytest = "^5.2"
 flake8 = "^3.9.0"
 black = "^20.8b1"
