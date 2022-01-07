@@ -18,7 +18,7 @@ def read() -> Config:
 
         return config_reader.read()
 
-    entry_points = importlib_metadata.entry_points().get("pyfony.bootstrap", ())
+    entry_points = importlib_metadata.entry_points().select(group="pyfony.bootstrap")
 
     if not entry_points:
         raise Exception("pyfony.bootstrap entry points is missing in the master package, try rebuilding the package")
