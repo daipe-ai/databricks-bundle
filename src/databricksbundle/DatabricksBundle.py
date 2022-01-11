@@ -10,7 +10,8 @@ from injecta.service.ServiceAlias import ServiceAlias
 from injecta.service.argument.ServiceArgument import ServiceArgument
 from pyfonybundles.Bundle import Bundle
 from databricksbundle.notebook.NotebookErrorHandler import set_notebook_error_handler
-from databricksbundle.detector import is_databricks
+from databricksbundle.detector import is_databricks, is_databricks_repo
+from databricksbundle.notebook.GithubLinkGenerator import GithubLinkGenerator
 from databricksbundle.notebook.helpers import get_notebook_path, is_notebook_environment
 from databricksbundle.notebook.logger.NotebookLoggerFactory import NotebookLoggerFactory
 
@@ -81,6 +82,12 @@ class DatabricksBundle(Bundle):
             multiple_results_enabled = "spark.databricks.workspace.multipleResults.enabled"
 
             spark = container.get(SparkSession)
+
+            if is_databricks_repo():
+                import IPython
+
+                link_generator = GithubLinkGenerator()
+                IPython.get_ipython().user_ns["daipe_help"] = link_generator.generate_link_from_module
 
             if spark.conf.get(multiple_results_enabled) == "false":
                 logger.warning(f"{multiple_results_enabled} is set to false!")
