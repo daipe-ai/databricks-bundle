@@ -3,12 +3,15 @@ parameters:
     databricks:
       spark:
         extra_config:
+    notebook:
+      path_resolver: "notebook"
 
 services:
   databricksbundle.dbutils.DatabricksDbUtilsFactory:
 
-  databricksbundle.notebook.path_resolver:
-    class: databricksbundle.notebook.path.DatabricksNotebookPathResolver
+  databricksbundle.notebook.path.DatabricksNotebookPathResolver:
+    tags:
+      - { name: databricksbundle.notebook.path_resolver, alias: notebook }
 
   databricksbundle.spark.config.databricks_extra_config:
     class: databricksbundle.spark.config.DictConfigConfigurator
