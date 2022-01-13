@@ -6,9 +6,13 @@ parameters:
 services:
   databricksbundle.notebook.logger.NotebookLoggerFactory:
     arguments:
-      - '@databricksbundle.notebook.path_resolver'
+      - !tagged_aliased ['databricksbundle.notebook.path_resolver', '%databricksbundle.notebook.path_resolver%']
     tags:
       - {name: 'daipe.logger.factory', alias: 'databricks'}
+
+  databricksbundle.notebook.path.LocalScriptPathResolver:
+    tags:
+      - { name: databricksbundle.notebook.path_resolver, alias: script }
 
   databricksbundle.test.DatabricksConnectTestCommand:
     arguments:

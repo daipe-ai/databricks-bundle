@@ -10,12 +10,11 @@ parameters:
         extra_config:
           spark.sql.session.timeZone: 'Etc/UTC'
           spark.sql.execution.arrow.fallback.enabled: 'true'
+    notebook:
+      path_resolver: "script"
 
 services:
   databricksbundle.dbutils.DatabricksConnectDbUtilsFactory:
-
-  databricksbundle.notebook.path_resolver:
-    class: databricksbundle.notebook.path.LocalScriptPathResolver
 
   databricksbundle.spark.config.databricks_connect_extra_config:
     class: databricksbundle.spark.config.DictConfigConfigurator

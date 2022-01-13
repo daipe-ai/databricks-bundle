@@ -6,6 +6,8 @@ from databricksbundle.notebook.path.NotebookPathResolverInterface import Noteboo
 class DatabricksScriptPathResolver(NotebookPathResolverInterface):
     def resolve(self) -> Path:
         if len(sys.argv) == 1:
-            raise Exception("spark_python_task.parameters in Databricks job configuration must contain real pipeline path as the first parameter")
+            raise Exception(
+                "spark_python_task.parameters in Databricks job configuration must contain real pipeline path as the first parameter"
+            )
 
         return Path(sys.argv[1])
