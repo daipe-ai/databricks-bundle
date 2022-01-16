@@ -14,7 +14,7 @@ class NotebookSessionFactory:
     def create(self) -> SparkSessionLazy:
         import IPython
 
-        spark = IPython.get_ipython().user_ns["spark"]  # type: SparkSession
+        spark: SparkSession = IPython.get_ipython().user_ns["spark"]
 
         for configurator in self.__configurators:
             configurator.configure(spark)
