@@ -1,3 +1,4 @@
+import os
 import re
 from typing import List
 from box import Box
@@ -8,6 +9,7 @@ from injecta.dtype.DType import DType
 from injecta.service.Service import Service
 from injecta.service.ServiceAlias import ServiceAlias
 from injecta.service.argument.ServiceArgument import ServiceArgument
+from injecta.config.ConfigMerger import ConfigMerger
 from pyfonybundles.Bundle import Bundle
 from databricksbundle.notebook.NotebookErrorHandler import set_notebook_error_handler
 from databricksbundle.detector import is_databricks, is_databricks_repo
@@ -37,6 +39,30 @@ class DatabricksBundle(Bundle):
 
     def get_config_files(self):
         return ["config.yaml", "databricks/" + self.__databricks_config]
+
+    def modify_raw_config(self, raw_config: dict) -> dict:
+        project_root_filesystem_path = os.getcwd()
+        project_root_repo_path = "<not_databricks_repo>"
+
+        if is_databricks_repo() and project_root_filesystem_path.startswith("/Workspace/Repos"):
+            project_root_repo_path = project_root_filesystem_path.replace("/Workspace/Repos", "/Repos")
+
+        project_root_paths = {
+            "parameters": {
+                "databricksbundle": {
+                    "project_root": {
+                        "filesystem": {
+                            "path": project_root_filesystem_path,
+                        },
+                        "repo": {
+                            "path": project_root_repo_path,
+                        },
+                    },
+                }
+            }
+        }
+
+        return ConfigMerger().merge(raw_config, project_root_paths)
 
     def modify_services(self, services: List[Service], aliases: List[ServiceAlias], parameters: Box):
         if is_running_in_console():
