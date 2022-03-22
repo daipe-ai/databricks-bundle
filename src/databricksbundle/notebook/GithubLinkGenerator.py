@@ -21,7 +21,7 @@ class GithubLinkGenerator:
         return module_name[:index_of_bundle] + "-" + module_name[index_of_bundle:]
 
     def __get_module_version(self, module_name: str) -> str:
-        base_path = Path("/".join(list(Path.cwd().parts[0:5])))
+        base_path = Path("/".join(list(Path.cwd().parts[0:Path.cwd().parts.index('Repos') + 3])))
         lockfile_path = base_path.joinpath("poetry.lock")
 
         with lockfile_path.open("r") as f:

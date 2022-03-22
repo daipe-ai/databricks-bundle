@@ -12,4 +12,4 @@ def is_databricks():
 
 
 def is_databricks_repo():
-    return is_databricks() and os.getcwd().startswith("/Workspace/Repos")
+    return is_databricks() and "/Repos/" in os.getcwd()
