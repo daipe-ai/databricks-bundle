@@ -1,10 +1,10 @@
 import re
 
 
-class DatabricksWidgetsLabelGenerator(object):
+class DatabricksWidgetsLabelGenerator:
     def __init__(self):
         self.__name_validator = re.compile("^[a-z][a-z_0-9]+$")
-        self.__widget_labels = dict()
+        self.__widget_labels = {}
         self.__widget_index = 1
 
     def generate_widget_label(self, name):
@@ -21,5 +21,5 @@ class DatabricksWidgetsLabelGenerator(object):
         del self.__widget_labels[name]
 
     def remove_all(self):
-        self.__widget_labels = dict()
+        self.__widget_labels = {}
         self.__widget_index = 1

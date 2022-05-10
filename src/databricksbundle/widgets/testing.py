@@ -112,7 +112,7 @@ class Multiselect(TestingWidget):
 
 class TestingDbUtilsWidgets:
     __fields = []
-    _raw_values = dict()
+    _raw_values = {}
 
     @classmethod
     def get_widget(cls, name):
@@ -153,5 +153,6 @@ class TestingDbUtilsWidgets:
 
 
 class DbUtilsTesting(DBUtils):
+    # pylint: disable=super-init-not-called
     def __init__(self):
         self.widgets = TestingDbUtilsWidgets()

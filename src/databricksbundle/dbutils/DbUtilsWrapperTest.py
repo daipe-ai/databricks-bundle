@@ -15,6 +15,7 @@ class DbUtilsWrapperTest(unittest.TestCase):
 
     def test_method_with_argument(self):
         def create_lazy():
+            # pylint: disable=import-outside-toplevel
             from pyspark.dbutils import FSHandler
 
             return FSHandler("foo")

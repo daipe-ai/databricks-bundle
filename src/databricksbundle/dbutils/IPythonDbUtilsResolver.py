@@ -1,4 +1,5 @@
 def resolve_dbutils():
+    # pylint: disable=import-outside-toplevel
     import IPython
 
     ipython = IPython.get_ipython()

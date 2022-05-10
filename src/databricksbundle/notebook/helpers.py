@@ -19,6 +19,7 @@ def is_notebook_environment():
 
 
 def ipython_display(obj):
+    # pylint: disable=import-outside-toplevel
     import IPython
 
     IPython.get_ipython().user_ns["display"](obj)

@@ -12,6 +12,7 @@ class NotebookSessionFactory:
         self.__configurators = configurators
 
     def create(self) -> SparkSessionLazy:
+        # pylint: disable=import-outside-toplevel
         import IPython
 
         spark: SparkSession = IPython.get_ipython().user_ns["spark"]

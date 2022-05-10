@@ -24,6 +24,7 @@ class GithubLinkGenerator:
         base_path = Path("/".join(list(Path.cwd().parts[0:5])))
         lockfile_path = base_path.joinpath("poetry.lock")
 
+        # pylint: disable=unspecified-encoding
         with lockfile_path.open("r") as f:
             config = tomlkit.parse(f.read())
 
@@ -34,6 +35,7 @@ class GithubLinkGenerator:
         raise Exception("Specified module could not be found, make sure the the module is imported and developed by DAIPE")
 
     def __get_display_html(self):
+        # pylint: disable=import-outside-toplevel
         import IPython
 
         ipython = IPython.get_ipython()

@@ -37,7 +37,7 @@ jobs:
           conda activate $PWD/.venv
           source ~/.poetry/env
           poe black-check
-          poe flake8
+          poe pylint
       - name: crlf
         run: |
           eval "$(conda shell.bash hook)"

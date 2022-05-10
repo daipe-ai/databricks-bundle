@@ -110,6 +110,7 @@ class DatabricksBundle(Bundle):
             spark = container.get(SparkSession)
 
             if is_databricks_repo():
+                # pylint: disable=import-outside-toplevel
                 import IPython
 
                 link_generator = GithubLinkGenerator()

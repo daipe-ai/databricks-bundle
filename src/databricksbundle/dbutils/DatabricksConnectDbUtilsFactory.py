@@ -8,6 +8,7 @@ class DatabricksConnectDbUtilsFactory:
 
     def create(self) -> DbUtilsWrapper:
         def create_lazy():
+            # pylint: disable=import-outside-toplevel
             from pyspark.dbutils import DBUtils
 
             return DBUtils(self.__spark)
