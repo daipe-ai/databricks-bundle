@@ -1,10 +1,12 @@
 import types
 import platform
+from typing import Callable
+
 from databricksbundle.detector import is_databricks
 
 
 class DbUtilsWrapper:
-    def __init__(self, factory_callback: callable):
+    def __init__(self, factory_callback: Callable):
         self._factory_callback = factory_callback
         self._db_utils = None
 

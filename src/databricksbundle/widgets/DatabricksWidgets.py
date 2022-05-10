@@ -1,3 +1,5 @@
+from typing import Optional
+
 from daipecore.widgets.Widgets import Widgets
 from databricksbundle.detector import is_databricks
 from databricksbundle.widgets.DatabricksWidgetsLabelGenerator import DatabricksWidgetsLabelGenerator
@@ -10,13 +12,13 @@ class DatabricksWidgets(Widgets):
         self.__multiselect_fields = []
         self.__label_generator = DatabricksWidgetsLabelGenerator()
 
-    def add_text(self, name: str, default_value: str = "", label: str = None):
+    def add_text(self, name: str, default_value: str = "", label: Optional[str] = None):
         default_value = default_value if default_value is not None else ""
         label = self.__label_generator.generate_widget_label(name) if label is None else label
 
         self.__dbutils.widgets.text(name, default_value, label)
 
-    def add_select(self, name: str, choices: list, default_value: str, label: str = None):
+    def add_select(self, name: str, choices: list, default_value: str, label: Optional[str] = None):
         if None in choices:
             raise Exception("Value None cannot be used as choice, use empty string instead")
 
@@ -27,7 +29,7 @@ class DatabricksWidgets(Widgets):
 
         self.__dbutils.widgets.dropdown(name, default_value, choices, label)
 
-    def add_multiselect(self, name: str, choices: list, default_values: list, label: str = None):
+    def add_multiselect(self, name: str, choices: list, default_values: list, label: Optional[str] = None):
         if None in choices:
             raise Exception("Value None cannot be used as choice, use empty string instead")
 

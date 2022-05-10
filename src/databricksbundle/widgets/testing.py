@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Dict
+from typing import Dict, Optional
 
 from pyspark.dbutils import DBUtils
 
@@ -15,7 +15,7 @@ class TestingWidget(ABC):
 
 
 class TextField(TestingWidget):
-    def __init__(self, name: str, default_value: str = None, label: str = None):
+    def __init__(self, name: str, default_value: Optional[str] = None, label: Optional[str] = None):
         self.__name = name
         self.__default_value = default_value
         self.__label = label
@@ -40,7 +40,7 @@ class TextField(TestingWidget):
 
 
 class Dropdown(TestingWidget):
-    def __init__(self, name: str, choices: list, default_value: str = None, label: str = None):
+    def __init__(self, name: str, choices: list, default_value: Optional[str] = None, label: Optional[str] = None):
         self.__name = name
         self.__choices = choices
         self.__default_value = default_value
@@ -74,7 +74,7 @@ class Dropdown(TestingWidget):
 
 
 class Multiselect(TestingWidget):
-    def __init__(self, name: str, choices: list, default_values: list = None, label: str = None):
+    def __init__(self, name: str, choices: list, default_values: Optional[list] = None, label: Optional[str] = None):
         self.__name = name
         self.__choices = choices
         self.__default_values = default_values or []
@@ -123,19 +123,19 @@ class TestingDbUtilsWidgets:
     def set_raw_values(cls, values: dict):
         cls._raw_values = values
 
-    def text(self, name, default_value: str = "", label: str = None):
+    def text(self, name, default_value: str = "", label: Optional[str] = None):
         if default_value is None:
             raise Exception("Default value cannot be None")
 
         self.__fields.append(TextField(name, default_value, label))
 
-    def dropdown(self, name, default_value: str, choices: list, label: str = None):
+    def dropdown(self, name, default_value: str, choices: list, label: Optional[str] = None):
         if default_value is None:
             raise Exception("Default value cannot be None")
 
         self.__fields.append(Dropdown(name, choices, default_value, label))
 
-    def multiselect(self, name, default_values: list, choices: list, label: str = None):
+    def multiselect(self, name, default_values: list, choices: list, label: Optional[str] = None):
         self.__fields.append(Multiselect(name, choices, default_values, label))
 
     def get(self, name):

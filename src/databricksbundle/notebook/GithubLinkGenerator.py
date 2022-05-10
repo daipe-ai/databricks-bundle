@@ -3,7 +3,7 @@ import traceback
 
 from inspect import getsource
 from pathlib import Path
-from typing import Callable, Union
+from typing import Callable, Union, Optional
 
 
 class GithubLinkGenerator:
@@ -28,7 +28,7 @@ class GithubLinkGenerator:
         with lockfile_path.open("r") as f:
             config = tomlkit.parse(f.read())
 
-        for module in config["package"]:
+        for module in config["package"]:  # pyre-ignore[16]
             if module["name"] == module_name:
                 return module["version"]
 
@@ -54,7 +54,7 @@ class GithubLinkGenerator:
 
         return self.__generate__github_url(github_repo_name, version, module_file_path)
 
-    def __generate__github_url(self, repo_name: str, version: str, file_path: str, line_number: str = None) -> str:
+    def __generate__github_url(self, repo_name: str, version: str, file_path: str, line_number: Optional[str] = None) -> str:
         github_path = "https://github.com/daipe-ai/"
         line_number = "" if line_number is not None else line_number
 
