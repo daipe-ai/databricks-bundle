@@ -36,9 +36,9 @@ daipe-core = "^1.2"
 [tool.poetry.dev-dependencies]
 databricks-connect = { url = "https://daipe-packages.s3.eu-central-1.amazonaws.com/databricks-connect-9.1.2.tar.gz" }
 pytest = "^5.2"
-flake8 = "^3.9.0"
+ipython = "^7.30.1"
+pylint = "^2.12.2"
 black = "^20.8b1"
-flake8-fixme = "^1.1.1"
 pep8-naming = "^0.11.1"
 poethepoet = "^0.10.0"
 
@@ -56,7 +56,24 @@ allowed_environments = ["test_aws", "test_azure"]
 [tool.black]
 line-length = 140
 
+[tool.pylint.basic]
+module-rgx = "(([a-z_][a-z0-9_]*)|([A-Z][a-zA-Z0-9]+))$"
+
+[tool.pylint.messages_control]
+disable = [
+    "missing-docstring",
+    "wrong-import-order",
+    "duplicate-code",
+    "line-too-long",
+    "bad-continuation",
+    "too-many-arguments",
+    "too-few-public-methods",
+    "ungrouped-imports",
+    "no-self-use",
+]
+good-names = ["e", "i", "k", "n", "f", "v", "df", "sc"]
+
 [tool.poe.tasks]
 black = "black src"
 black-check = "black --check src"
-flake8 = "flake8 --ignore=E501,W503 src"
+pylint = "pylint src"

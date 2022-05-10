@@ -11,7 +11,10 @@ class DbUtilsWrapper:
     def __getattr__(self, attribute_name):
         if self._db_utils is None:
             if not is_databricks():
+                # pylint: disable=import-outside-toplevel
                 from databricksbundle.spark.java_home_setter import set_java_home
+
+                # pylint: disable=import-outside-toplevel
                 from databricksbundle.spark.existing_spark_cleanup import (
                     clean_existing_spark_config,
                 )

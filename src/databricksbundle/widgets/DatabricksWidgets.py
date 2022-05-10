@@ -31,7 +31,7 @@ class DatabricksWidgets(Widgets):
         if None in choices:
             raise Exception("Value None cannot be used as choice, use empty string instead")
 
-        if type(default_values) != list:
+        if not isinstance(default_values, list):
             raise Exception("You must provide a list of length 1 if you want to specify default value")
 
         if len(default_values) != 1:

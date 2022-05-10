@@ -17,9 +17,9 @@ class DatabricksConnectTestCommand(ConsoleCommand):
 
     def run(self, input_args: Namespace):
         self.__logger.info("Testing the connectivity")
-        a = [1, 2, 3, 4]
-        b = [2, 3, 4, 8]
-        df = self.__spark.createDataFrame([a, b], schema=["a", "b"])
+        list_a = [1, 2, 3, 4]
+        list_b = [2, 3, 4, 8]
+        df = self.__spark.createDataFrame([list_a, list_b], schema=["a", "b"])
         self.__logger.info("Creating sample DataFrame")
         df.show()
         self.__logger.info("Connection successful")

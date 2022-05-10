@@ -16,7 +16,7 @@ class StorageConfigurator(ConfiguratorInterface):
         }
 
     def configure(self, spark: SparkSession):
-        for key, conf in self.__storages.items():
+        for _, conf in self.__storages.items():
             if conf.type not in self.__storage_configurators:
                 raise Exception(f"No configurator for storage: {conf.type}")
 

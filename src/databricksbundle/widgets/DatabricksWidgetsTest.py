@@ -7,6 +7,7 @@ def set_input(**kwargs):
     TestingDbUtilsWidgets.set_raw_values(kwargs)
 
 
+# pylint: disable=too-many-public-methods
 class DatabricksWidgetsTest(unittest.TestCase):
     def setUp(self):
         self.__widgets = DatabricksWidgets(DbUtilsTesting())

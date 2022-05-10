@@ -7,7 +7,7 @@ class DictConfigConfigurator(ConfiguratorInterface):
         self,
         dict_config: dict = None,
     ):
-        self.__dict_config = dict_config or dict()
+        self.__dict_config = dict_config or {}
 
     def configure(self, spark: SparkSession):
         for k, v in self.__dict_config.items():

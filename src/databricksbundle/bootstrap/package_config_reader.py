@@ -9,6 +9,7 @@ if sys.version_info >= (3, 8):
 else:
     import importlib_metadata
 
+# pylint: disable=wrong-import-position
 from importlib_metadata import files
 
 
@@ -16,6 +17,7 @@ def read() -> Config:
     if is_databricks_workspace():
         read_config_from_master_package()
 
+    # pylint: disable=import-outside-toplevel
     from pyfonycore.bootstrap.config import config_reader
 
     return config_reader.read()
