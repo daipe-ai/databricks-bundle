@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pyspark.sql.session import SparkSession
 from databricksbundle.spark.config.ConfiguratorInterface import ConfiguratorInterface
 
@@ -5,7 +7,7 @@ from databricksbundle.spark.config.ConfiguratorInterface import ConfiguratorInte
 class DictConfigConfigurator(ConfiguratorInterface):
     def __init__(
         self,
-        dict_config: dict = None,
+        dict_config: Optional[dict] = None,
     ):
         self.__dict_config = dict_config or {}
 
