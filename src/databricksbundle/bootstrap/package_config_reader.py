@@ -15,7 +15,7 @@ from importlib_metadata import files
 
 def read() -> Config:
     if is_databricks_workspace():
-        read_config_from_master_package()
+        return read_config_from_master_package()
 
     # pylint: disable=import-outside-toplevel
     from pyfonycore.bootstrap.config import config_reader
@@ -23,7 +23,7 @@ def read() -> Config:
     return config_reader.read()
 
 
-def read_config_from_master_package():
+def read_config_from_master_package() -> Config:
     entry_points = importlib_metadata.entry_points().get("pyfony.bootstrap", ())
 
     if not entry_points:
@@ -40,5 +40,5 @@ def read_config_from_master_package():
     return pyfony_config_factory.create(raw_config, "pyfony.bootstrap entry point")
 
 
-def entry_point_exists():
+def entry_point_exists() -> bool:
     return "pyfony.bootstrap" in importlib_metadata.entry_points()
