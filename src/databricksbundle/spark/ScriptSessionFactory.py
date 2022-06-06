@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List
 from pyspark.sql import SparkSession
 from databricksbundle.spark.SparkSessionLazy import SparkSessionLazy
 from databricksbundle.spark.config.ConfiguratorInterface import ConfiguratorInterface
@@ -7,7 +7,7 @@ from databricksbundle.spark.config.ConfiguratorInterface import ConfiguratorInte
 class ScriptSessionFactory:
     def __init__(
         self,
-        configurators: Optional[List[ConfiguratorInterface]] = None,
+        configurators: List[ConfiguratorInterface],
     ):
         self.__configurators = configurators or []
 
