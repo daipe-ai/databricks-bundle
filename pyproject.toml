@@ -24,7 +24,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 console-bundle = "^0.5"
 pyfony-core = "0.8.*"
 pyfony-bundles = "0.4.*"
@@ -34,8 +34,7 @@ pyspark-bundle = "^1.2"
 daipe-core = "^1.2"
 
 [tool.poetry.dev-dependencies]
-databricks-connect = { url = "https://daipe-packages.s3.eu-central-1.amazonaws.com/databricks-connect-9.1.2.tar.gz" }
-pytest = "^5.2"
+databricks-connect = {url = "https://daipe-packages.s3.eu-central-1.amazonaws.com/databricks-connect-9.1.2.tar.gz"}
 pyre-check-nightly = { version = "^0.0.101638533492", markers = "sys_platform == 'linux'"}
 ipython = "^7.30.1"
 pylint = "^2.12.2"

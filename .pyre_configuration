@@ -3,7 +3,7 @@
     "/app/src"
   ],
   "search_path": [
-    "/app/.venv/lib/python3.7/site-packages"
+    "/app/.venv/lib/python3.8/site-packages"
   ],
   "taint_models_path": "/app/.venv/lib"
 }
