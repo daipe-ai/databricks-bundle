@@ -1,0 +1,13 @@
+name: "CodeQL"
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  schedule:
+    - cron: '29 5 * * 2'
+
+jobs:
+  codeql:
+    uses: pyfony/pyfony-package-ci-cd/.github/workflows/codeql.yml@v1
