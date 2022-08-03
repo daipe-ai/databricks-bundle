@@ -11,9 +11,9 @@ def is_databricks():
     return os.getenv("DATABRICKS_RUNTIME_VERSION") is not None
 
 
-def is_databricks_workspace():
-    return is_databricks() and os.getcwd().startswith("/Workspace") and not is_databricks_repo()
-
-
 def is_databricks_repo():
     return is_databricks() and os.getcwd().startswith("/Workspace/Repos")
+
+
+def is_databricks_workspace():
+    return is_databricks() and not is_databricks_repo()
