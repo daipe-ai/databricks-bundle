@@ -1,5 +1,7 @@
 import os
 
+from databricksbundle.notebook.helpers import is_notebook_environment
+
 
 def is_databricks():
     """
@@ -12,8 +14,8 @@ def is_databricks():
 
 
 def is_databricks_repo():
-    return is_databricks() and os.getcwd().startswith("/Workspace/Repos")
+    return is_databricks() and is_notebook_environment() and os.getcwd().startswith("/Workspace/Repos")
 
 
 def is_databricks_workspace():
-    return is_databricks() and not is_databricks_repo()
+    return is_databricks() and is_notebook_environment() and not is_databricks_repo()
