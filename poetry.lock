@@ -103,11 +103,11 @@ python-dotenv = ">=0.13.0,<1.0.0"
 
 [[package]]
 name = "daipe-core"
-version = "1.2.0"
+version = "1.4.4"
 description = "Daipe framework core"
 category = "main"
 optional = false
-python-versions = ">=3.7,<4.0"
+python-versions = ">=3.8,<4.0"
 
 [package.dependencies]
 console-bundle = ">=0.5,<0.6"
@@ -800,7 +800,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "dac474c711ade565475655507d59fd942177ca3fa5a8e6628c2bd53812a00110"
+content-hash = "1ae5a3158e7897263de3f2c454d3ecacb115adbbf5edf26029be3b0dff7d0142"
 
 [metadata.files]
 appnope = [
