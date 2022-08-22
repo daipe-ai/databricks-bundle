@@ -2,6 +2,7 @@ from typing import Optional
 
 from daipecore.widgets.Widgets import Widgets
 from databricksbundle.detector import is_databricks
+from databricksbundle.notebook.helpers import is_notebook_environment
 from databricksbundle.widgets.DatabricksWidgetsLabelGenerator import DatabricksWidgetsLabelGenerator
 from pyspark.dbutils import DBUtils
 
@@ -65,4 +66,4 @@ class DatabricksWidgets(Widgets):
         return value
 
     def should_be_resolved(self):
-        return is_databricks()
+        return is_databricks() and is_notebook_environment()

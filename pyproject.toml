@@ -31,7 +31,7 @@ pyfony-bundles = "0.4.*"
 injecta = "0.10.*"
 logger-bundle = "0.7.*"
 pyspark-bundle = "^1.2"
-daipe-core = "^1.2"
+daipe-core = "^1.4.4"
 
 [tool.poetry.dev-dependencies]
 databricks-connect = {url = "https://daipe-packages.s3.eu-central-1.amazonaws.com/databricks-connect-9.1.2.tar.gz"}
