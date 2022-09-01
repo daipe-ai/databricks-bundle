@@ -116,6 +116,6 @@ class DatabricksBundle(Bundle):
                 link_generator = GithubLinkGenerator()
                 IPython.get_ipython().user_ns["daipe_help"] = link_generator.generate_link_from_module
 
-            if spark.conf.get(multiple_results_enabled) == "false":
+            if spark.conf.get(multiple_results_enabled, default=None) == "false":
                 logger.warning(f"{multiple_results_enabled} is set to false!")
                 logger.warning("Error messages will not show properly!")
