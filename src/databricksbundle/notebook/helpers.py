@@ -15,7 +15,10 @@ def get_notebook_path():
 
 
 def is_notebook_environment():
-    return sys.argv and sys.argv[0][-15:] == "/PythonShell.py"
+    python_shell_launcher = "/databricks/python_shell/scripts/PythonShell.py"  # DBR < 11.0
+    ipykernel_launcher = "/databricks/python_shell/scripts/db_ipykernel_launcher.py"  # DBR >= 11.0
+
+    return sys.argv and (sys.argv[0] == python_shell_launcher or sys.argv[0] == ipykernel_launcher)
 
 
 def ipython_display(obj):
