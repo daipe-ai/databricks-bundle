@@ -7,9 +7,6 @@ from importlib.metadata import files
 
 
 def read() -> Config:
-    if is_databricks_workspace():
-        return read_config_from_master_package()
-
     # pylint: disable=import-outside-toplevel
     from pyfonycore.bootstrap.config import config_reader
 
