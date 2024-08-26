@@ -42,10 +42,7 @@ class DatabricksBundle(Bundle):
 
     def modify_raw_config(self, raw_config: dict) -> dict:
         project_root_filesystem_path = os.getcwd()
-        project_root_repo_path = "<not_databricks_repo>"
-
-        if is_databricks_repo() and project_root_filesystem_path.startswith("/Workspace/Repos"):
-            project_root_repo_path = project_root_filesystem_path.replace("/Workspace/Repos", "/Repos")
+        project_root_api_path = project_root_filesystem_path.replace("/Workspace", "")
 
         project_root_paths = {
             "parameters": {
@@ -54,8 +51,8 @@ class DatabricksBundle(Bundle):
                         "filesystem": {
                             "path": project_root_filesystem_path,
                         },
-                        "repo": {
-                            "path": project_root_repo_path,
+                        "api": {
+                            "path": project_root_api_path,
                         },
                     },
                 }
