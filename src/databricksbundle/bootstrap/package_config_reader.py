@@ -1,7 +1,6 @@
 import json
 from pyfonycore.bootstrap.config import config_factory as pyfony_config_factory
 from pyfonycore.bootstrap.config.Config import Config
-from databricksbundle.detector import is_databricks_workspace
 from importlib import metadata as importlib_metadata
 from importlib.metadata import files
 
