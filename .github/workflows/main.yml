@@ -16,6 +16,6 @@ jobs:
         with:
           miniforge-version: 4.10.3-6
       - name: python version 2
-      run: |
-        python --version
-        which python
+        run: |
+          python --version
+          which python
