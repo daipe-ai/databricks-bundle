@@ -20,5 +20,6 @@ jobs:
       - name: python version 2
         run: |
           export "PATH=/usr/share/miniconda3:$PATH"
+          ls -l /usr/share/miniconda3
           python --version
           which python
