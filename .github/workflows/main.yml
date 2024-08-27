@@ -19,7 +19,7 @@ jobs:
           activate-environment: ""
       - name: python version 2
         run: |
-          export "PATH=/usr/share/miniconda3:$PATH"
-          ls -l /usr/share/miniconda3
+          export "PATH=/usr/share/miniconda3/bin:$PATH"
+          ls -l /usr/share/miniconda3/bin
           python --version
           which python
