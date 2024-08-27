@@ -1,15 +1,11 @@
 name: Build & Release pipeline
 on:
   push:
-  schedule:
-    - cron: "0 6 * * *"
 
 jobs:
-  build:
-    uses: pyfony/pyfony-package-ci-cd/.github/workflows/build.yml@v1
-
-  release:
-    needs: build
-    uses: pyfony/pyfony-package-ci-cd/.github/workflows/release.yml@v1
-    secrets:
-      PYPI_PUBLISH: ${{ secrets.PYPI_PUBLISH }}
+  build_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: python version
+        run: python --version
