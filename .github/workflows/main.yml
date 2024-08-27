@@ -5,6 +5,9 @@ on:
 jobs:
   build_test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
     steps:
       - uses: actions/checkout@v1
       - name: python version
@@ -18,6 +21,10 @@ jobs:
           auto-activate-base: true
           activate-environment: ""
       - name: python version 2
+        run: |
+          python --version
+          which python
+      - name: python version 3
         run: |
           export "PATH=/usr/share/miniconda3/bin:$PATH"
           ls -l /usr/share/miniconda3/bin
