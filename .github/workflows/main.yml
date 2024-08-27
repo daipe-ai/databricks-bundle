@@ -16,9 +16,12 @@ jobs:
           miniforge-version: 4.10.3-6
           auto-activate-base: true
           activate-environment: ""
-      - name: Add conda python do PATH
-        run: |
-          echo "/usr/share/miniconda3/bin" >> $GITHUB_PATH
+      - name: Set up python
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.8.10'
+          architecture: 'x64'
       - name: Install Poetry
         uses: snok/install-poetry@v1.3.3
         with:
