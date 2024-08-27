@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        shell: bash
+        shell: bash -el {0}
     steps:
       - uses: actions/checkout@v1
       - name: python version
@@ -18,8 +18,6 @@ jobs:
         uses: conda-incubator/setup-miniconda@v2.1.1
         with:
           miniforge-version: 4.10.3-6
-          auto-activate-base: true
-          activate-environment: ""
       - name: python version 2
         run: |
           python --version
