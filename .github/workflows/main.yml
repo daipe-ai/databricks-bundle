@@ -26,3 +26,8 @@ jobs:
           eval "$(conda shell.bash hook)"
           conda activate $PWD/.venv
           poetry build -f wheel
+      - name: Publish package to pypi.org
+        run: |
+          eval "$(conda shell.bash hook)"
+          conda activate $PWD/.venv
+          poetry publish -u __token__ -p ${{ secrets.PYPI_PUBLISH }}
