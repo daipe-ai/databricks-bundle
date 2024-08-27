@@ -8,4 +8,14 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: python version
-        run: python --version
+        run: |
+          python --version
+          which python
+      - name: Install Miniforge
+        uses: conda-incubator/setup-miniconda@v2.1.1
+        with:
+          miniforge-version: 4.10.3-6
+      - name: python version 2
+      run: |
+        python --version
+        which python
