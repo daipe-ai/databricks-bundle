@@ -19,7 +19,7 @@ jobs:
         with:
           miniforge-version: 4.10.3-6
           auto-activate-base: true
-          # activate-environment: ""
+          activate-environment: ""
       - name: python version 2
         run: |
           python --version
