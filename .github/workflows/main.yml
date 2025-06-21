@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    uses: pyfony/pyfony-package-ci-cd/.github/workflows/build.yml@v1
+    uses: pyfony/pyfony-package-ci-cd/.github/workflows/build.yml@master
 
   release:
     needs: build
